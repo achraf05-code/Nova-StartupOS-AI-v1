@@ -7,11 +7,17 @@
 --
 -- Sections:
 --   1. Extensions
---   2. Helper functions (role check + timestamp triggers)
---   3. Core tables
---   4. auth.users -> profiles sign-up trigger
---   5. Seed: default AI providers
---   6. Row-Level Security (RLS) + policies
+--   2. Generic helper (set_updated_at)  — must come BEFORE any tables
+--                                          that wire it as a trigger.
+--   3. Core tables                       — created BEFORE the role-check
+--                                          functions, because Postgres
+--                                          parses `language sql` bodies
+--                                          at CREATE time.
+--   4. Role helpers (is_admin / is_super_admin)
+--   5. auth.users -> profiles sign-up trigger
+--   6. updated_at triggers
+--   7. Seed: default AI providers
+--   8. Row-Level Security (RLS) + policies
 -- =====================================================================
 
 
@@ -24,49 +30,9 @@ create extension if not exists "uuid-ossp";
 
 
 -- =====================================================================
--- 2. HELPER FUNCTIONS
+-- 2. GENERIC HELPER (no table dependencies)
 -- =====================================================================
-
--- ---------------------------------------------------------------------
--- is_admin(): returns TRUE when the current auth user is Admin/Super Admin.
--- CRITICAL: declared SECURITY DEFINER so it reads `profiles` WITHOUT
--- triggering RLS — this prevents infinite recursion in the profiles
--- policies that would otherwise re-query profiles to evaluate themselves.
--- ---------------------------------------------------------------------
-create or replace function public.is_admin()
-returns boolean
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1
-    from public.profiles
-    where id = auth.uid()
-      and role in ('Admin', 'Super Admin')
-  );
-$$;
-
--- is_super_admin(): TRUE only for the Super Admin tier.
-create or replace function public.is_super_admin()
-returns boolean
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1
-    from public.profiles
-    where id = auth.uid()
-      and role = 'Super Admin'
-  );
-$$;
-
--- ---------------------------------------------------------------------
--- set_updated_at(): generic trigger to auto-maintain updated_at columns.
--- ---------------------------------------------------------------------
+-- set_updated_at(): trigger to auto-maintain updated_at columns.
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
@@ -81,6 +47,8 @@ $$;
 -- =====================================================================
 -- 3. CORE TABLES
 -- =====================================================================
+-- All tables are created BEFORE the role-check functions below, so the
+-- `language sql` functions can resolve `public.profiles` at CREATE time.
 
 -- ---- profiles --------------------------------------------------------
 -- One row per auth user; populated automatically by the sign-up trigger.
@@ -200,20 +168,51 @@ create table if not exists public.blocked_ips (
   created_at timestamptz not null default now()
 );
 
--- ---- updated_at triggers ---------------------------------------------
-drop trigger if exists trg_payment_gateways_updated on public.payment_gateways;
-create trigger trg_payment_gateways_updated
-  before update on public.payment_gateways
-  for each row execute function public.set_updated_at();
 
-drop trigger if exists trg_ai_providers_updated on public.ai_providers_config;
-create trigger trg_ai_providers_updated
-  before update on public.ai_providers_config
-  for each row execute function public.set_updated_at();
+-- =====================================================================
+-- 4. ROLE HELPERS  (now safe — public.profiles exists)
+-- =====================================================================
+
+-- ---------------------------------------------------------------------
+-- is_admin(): TRUE when the current auth user is Admin or Super Admin.
+-- CRITICAL: declared SECURITY DEFINER so it reads `profiles` WITHOUT
+-- triggering RLS — this prevents infinite recursion in the profiles
+-- policies that would otherwise re-query profiles to evaluate themselves.
+-- ---------------------------------------------------------------------
+create or replace function public.is_admin()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1
+    from public.profiles
+    where id = auth.uid()
+      and role in ('Admin', 'Super Admin')
+  );
+$$;
+
+-- is_super_admin(): TRUE only for the Super Admin tier.
+create or replace function public.is_super_admin()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1
+    from public.profiles
+    where id = auth.uid()
+      and role = 'Super Admin'
+  );
+$$;
 
 
 -- =====================================================================
--- 4. AUTH SIGN-UP TRIGGER  (auth.users -> public.profiles)
+-- 5. AUTH SIGN-UP TRIGGER  (auth.users -> public.profiles)
 -- =====================================================================
 -- Automatically create a profile row on every new sign-up, syncing the
 -- email/name and applying safe defaults. SECURITY DEFINER so it can write
@@ -248,7 +247,21 @@ create trigger on_auth_user_created
 
 
 -- =====================================================================
--- 5. SEED: DEFAULT AI PROVIDERS
+-- 6. updated_at TRIGGERS
+-- =====================================================================
+drop trigger if exists trg_payment_gateways_updated on public.payment_gateways;
+create trigger trg_payment_gateways_updated
+  before update on public.payment_gateways
+  for each row execute function public.set_updated_at();
+
+drop trigger if exists trg_ai_providers_updated on public.ai_providers_config;
+create trigger trg_ai_providers_updated
+  before update on public.ai_providers_config
+  for each row execute function public.set_updated_at();
+
+
+-- =====================================================================
+-- 7. SEED: DEFAULT AI PROVIDERS
 -- =====================================================================
 -- Pre-populate the 5 core providers so the Super Admin panel never boots
 -- into an empty state. OpenRouter is the default; tweak costs/priority later.
@@ -264,7 +277,7 @@ on conflict (provider_name) do nothing;
 
 
 -- =====================================================================
--- 6. ROW-LEVEL SECURITY (RLS) + POLICIES
+-- 8. ROW-LEVEL SECURITY (RLS) + POLICIES
 -- =====================================================================
 -- Enable RLS on every table.
 alter table public.profiles            enable row level security;
@@ -286,8 +299,8 @@ alter table public.blocked_ips         enable row level security;
 --   - Note: role checks use is_admin() (SECURITY DEFINER) to avoid
 --     recursive policy evaluation on this same table.
 -- ---------------------------------------------------------------------
-drop policy if exists profiles_select_own      on public.profiles;
-drop policy if exists profiles_update_own      on public.profiles;
+drop policy if exists profiles_select_own       on public.profiles;
+drop policy if exists profiles_update_own       on public.profiles;
 drop policy if exists profiles_admin_select_all on public.profiles;
 drop policy if exists profiles_admin_update_all on public.profiles;
 drop policy if exists profiles_admin_delete     on public.profiles;
@@ -318,7 +331,7 @@ create policy profiles_admin_delete
 -- ---------------------------------------------------------------------
 -- STARTUPS  (owner full control; admins read all)
 -- ---------------------------------------------------------------------
-drop policy if exists startups_owner_all   on public.startups;
+drop policy if exists startups_owner_all    on public.startups;
 drop policy if exists startups_admin_select on public.startups;
 
 create policy startups_owner_all
@@ -334,7 +347,7 @@ create policy startups_admin_select
 -- ---------------------------------------------------------------------
 -- GENERATED_DOCUMENTS  (owner full control; admins read all)
 -- ---------------------------------------------------------------------
-drop policy if exists docs_owner_all   on public.generated_documents;
+drop policy if exists docs_owner_all    on public.generated_documents;
 drop policy if exists docs_admin_select on public.generated_documents;
 
 create policy docs_owner_all
@@ -352,7 +365,7 @@ create policy docs_admin_select
 --   - Owner can create/read/update their own tickets.
 --   - Admins can read ALL and update ANY (to reply / change status).
 -- ---------------------------------------------------------------------
-drop policy if exists tickets_owner_all   on public.support_tickets;
+drop policy if exists tickets_owner_all    on public.support_tickets;
 drop policy if exists tickets_admin_select on public.support_tickets;
 drop policy if exists tickets_admin_update on public.support_tickets;
 
@@ -437,8 +450,8 @@ create policy gateways_superadmin_all
 --   - Any authenticated user may READ (to learn default model/provider).
 --   - Only Super Admin may modify costs/priority/keys.
 -- ---------------------------------------------------------------------
-drop policy if exists ai_auth_select       on public.ai_providers_config;
-drop policy if exists ai_superadmin_write   on public.ai_providers_config;
+drop policy if exists ai_auth_select      on public.ai_providers_config;
+drop policy if exists ai_superadmin_write on public.ai_providers_config;
 
 create policy ai_auth_select
   on public.ai_providers_config for select
@@ -463,9 +476,11 @@ create policy blocked_admin_all
 
 -- =====================================================================
 -- DONE. Post-setup notes:
---   • Promote your first admin manually, e.g.:
+--   • Run supabase_schema_v2.sql next to add subscriptions, payments,
+--     audit_logs, notifications, assessments, ai_requests, usage_tracking,
+--     system_events, saved_funding, plus column-compatibility shims and
+--     the storage bucket.
+--   • Promote your first admin manually:
 --       update public.profiles set role = 'Super Admin'
 --       where email = 'you@example.com';
---   • The Storage bucket 'startup-logos' must be created separately
---     (Dashboard > Storage) with an appropriate upload policy.
 -- =====================================================================
