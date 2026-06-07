@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Nova StartupOS AI - The AI-powered operating system for startup founders. Generate business plans, pitch decks, readiness assessments, and funding strategies in minutes.">
+      <meta name="author" content="Nova StartupOS AI">
+      <title>Nova StartupOS AI - Build Your Startup with AI</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      <!-- Bootstrap 5.3 -->
+      <link href="css/bootstrap.min.css" rel="stylesheet"/>
+      <!-- AOS Animate on Scroll -->
+      <link href="css/aos.css" rel="stylesheet"/>
+      <!-- Swiper -->
+      <link href="css/swiper-bundle.min.css" rel="stylesheet"/>
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="css/all.min.css"/>
+      <!-- Magnific Popup -->
+      <link rel="stylesheet" href="css/magnific-popup.css"/>
+      <!-- Base Design System -->
+      <link rel="stylesheet" href="css/style.css" />
+      <!-- Nova StartupOS AI overrides -->
+      <link rel="stylesheet" href="css/nova.css" />
+      <!-- Supabase JS SDK (must load before custom scripts) -->
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   </head>
+   <body>
+      <!-- ======================== LANDING PAGE ======================== -->
+      <div id="landing">
+         <!-- NAVBAR -->
+         <nav id="nbar">
+            <div class="container">
+               <div class="d-flex align-items-center justify-content-between w-100">
+                  <a href="#" class="d-flex align-items-center gap-2" style="font-size:1.15rem;font-weight:700;color:var(--tx)">
+                     <div class="logo-i"><i class="fa-solid fa-rocket"></i></div>
+                     <span>Nova<span class="gt">StartupOS</span></span>
+                  </a>
+                  <div class="d-none d-lg-flex align-items-center gap-1 mx-auto">
+                     <a href="#features" class="nav-link">Features</a>
+                     <a href="#how" class="nav-link">How It Works</a>
+                     <a href="#benefits" class="nav-link">Benefits</a>
+                     <a href="#pricing" class="nav-link">Pricing</a>
+                     <a href="#faq" class="nav-link">FAQ</a>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                     <button class="boc d-flex align-items-center justify-content-center" id="thbtn" style="width:38px;height:38px;padding:0;border-radius:12px" aria-label="Toggle theme">
+                     <i class="fa-solid fa-sun" id="suni" style="display:none"></i>
+                     <i class="fa-solid fa-moon" id="mooni"></i>
+                     </button>
+                     <button class="boc px-3 py-2 d-none d-sm-flex align-items-center gap-1" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('login')">
+                     <i class="fa-regular fa-user fa-sm"></i> Log in
+                     </button>
+                     <button class="bgrd btn px-3 py-2 d-none d-sm-flex align-items-center gap-1" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('signup')">
+                     Start Free <i class="fa-solid fa-arrow-right fa-sm"></i>
+                     </button>
+                     <button class="boc d-lg-none px-2 py-2" id="mbtog" style="border-radius:10px" aria-label="Toggle menu">
+                     <i class="fa-solid fa-bars" id="barIcon"></i>
+                     <i class="fa-solid fa-xmark" id="xIcon" style="display:none"></i>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </nav>
+         <div id="mbmenu">
+            <a href="#features" class="nav-link d-block py-3 border-bottom" style="border-color:var(--bd)!important">Features</a>
+            <a href="#how" class="nav-link d-block py-3 border-bottom" style="border-color:var(--bd)!important">How It Works</a>
+            <a href="#benefits" class="nav-link d-block py-3 border-bottom" style="border-color:var(--bd)!important">Benefits</a>
+            <a href="#pricing" class="nav-link d-block py-3 border-bottom" style="border-color:var(--bd)!important">Pricing</a>
+            <a href="#faq" class="nav-link d-block py-3">FAQ</a>
+            <div class="d-flex gap-2 mt-3">
+               <button class="boc flex-fill py-2 btn" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('login')">Log in</button>
+               <button class="bgrd flex-fill py-2 btn" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('signup')">Start Free</button>
+            </div>
+         </div>
+         <!-- HERO -->
+         <section id="hero">
+            <div class="aur aur-a" style="top:-80px;left:-120px"></div>
+            <div class="aur aur-b" style="top:180px;right:-180px"></div>
+            <div class="aur aur-a" style="bottom:-80px;left:45%;transform:translateX(-50%);opacity:.4"></div>
+            <div class="container position-relative" style="z-index:2">
+               <div class="text-center">
+                  <div class="afu" style="animation-delay:.05s"><span class="hbadge"><span class="bdot"></span>Your AI co-founder, from idea to investment</span></div>
+                  <h1 class="h1 afu" style="animation-delay:.12s">Build Your Startup<br>with <span class="gt">AI</span></h1>
+                  <p class="mx-auto afu" style="max-width:600px;font-size:clamp(.95rem,1.8vw,1.2rem);color:var(--tx2);margin-bottom:36px;animation-delay:.2s">Generate business plans, pitch decks, startup assessments, and funding strategies in minutes. Nova turns your idea into an investment-ready startup.</p>
+                  <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap afu" style="animation-delay:.28s">
+                     <button class="bgrd btn px-4 py-3 fs-6" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('signup')">Start Free <i class="fa-solid fa-arrow-right ms-1 fa-sm"></i></button>
+                     <a href="https://www.youtube.com/watch?v=ScMzIvxBSi4" class="boc btn px-4 py-3 fs-6 vidpop"><i class="fa-solid fa-circle-play me-2" style="color:var(--pur)"></i>Watch Demo</a>
+                  </div>
+                  <div class="mt-5 afu" style="animation-delay:.4s">
+                     <p style="font-size:.71rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px">Trusted by founders building the next big thing</p>
+                     <div class="d-flex align-items-center justify-content-center gap-4 flex-wrap">
+                        <span class="tlog">Y Combinator</span><span class="tlog">Techstars</span><span class="tlog">500 Global</span><span class="tlog">Antler</span><span class="tlog">Seedcamp</span><span class="tlog">Plug&amp;Play</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="row justify-content-center mt-5">
+                  <div class="col-lg-11 adi">
+                     <div class="dwrap">
+                        <div class="dtbar"><span class="dd" style="background:#ff5f57"></span><span class="dd" style="background:#ffbd2e"></span><span class="dd" style="background:#28c840"></span><span class="ms-auto me-auto" style="font-size:.76rem;color:var(--tx3)">Nova StartupOS AI &middot; app.novastartupos.ai</span></div>
+                        <div class="dgrid">
+                           <div class="dside">
+                              <div style="font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx3);padding:0 10px 10px;font-weight:700">Founder OS</div>
+                              <button class="dsi on"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+                              <button class="dsi"><i class="fa-solid fa-file-lines"></i> Business Plans</button>
+                              <button class="dsi"><i class="fa-solid fa-chalkboard"></i> Pitch Decks</button>
+                              <button class="dsi"><i class="fa-solid fa-gauge"></i> Readiness</button>
+                              <button class="dsi"><i class="fa-solid fa-sack-dollar"></i> Funding</button>
+                           </div>
+                           <div class="p-3">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-6 col-sm-3">
+                                    <div class="stpill">
+                                       <div style="font-size:1.4rem;font-weight:700" class="gt">82</div>
+                                       <div style="font-size:.67rem;color:var(--tx3)">Startup Score</div>
+                                       <div style="font-size:.67rem;color:#34d399;font-weight:600"><i class="fa-solid fa-caret-up me-1"></i>12 pts</div>
+                                    </div>
+                                 </div>
+                                 <div class="col-6 col-sm-3">
+                                    <div class="stpill">
+                                       <div style="font-size:1.4rem;font-weight:700">3</div>
+                                       <div style="font-size:.67rem;color:var(--tx3)">Business Plans</div>
+                                       <div style="font-size:.67rem;color:#34d399;font-weight:600"><i class="fa-solid fa-caret-up me-1"></i>2 new</div>
+                                    </div>
+                                 </div>
+                                 <div class="col-6 col-sm-3">
+                                    <div class="stpill">
+                                       <div style="font-size:1.4rem;font-weight:700">5</div>
+                                       <div style="font-size:.67rem;color:var(--tx3)">Pitch Decks</div>
+                                       <div style="font-size:.67rem;color:#60a5fa;font-weight:600"><i class="fa-solid fa-bolt me-1"></i>AI ready</div>
+                                    </div>
+                                 </div>
+                                 <div class="col-6 col-sm-3">
+                                    <div class="stpill">
+                                       <div style="font-size:1.4rem;font-weight:700">14</div>
+                                       <div style="font-size:.67rem;color:var(--tx3)">Funding Matches</div>
+                                       <div style="font-size:.67rem;color:#34d399;font-weight:600"><i class="fa-solid fa-caret-up me-1"></i>6 new</div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row g-2">
+                                 <div class="col-sm-7">
+                                    <div style="background:var(--bg3);border:1px solid var(--bd);border-radius:12px;padding:14px">
+                                       <div style="font-size:.73rem;color:var(--tx3);margin-bottom:10px;font-weight:600"><i class="fa-solid fa-chart-bar me-1"></i>Readiness breakdown</div>
+                                       <div style="display:flex;align-items:flex-end;gap:5px;height:76px">
+                                          <div class="bbar" style="height:78%"></div>
+                                          <div class="bbar" style="height:64%"></div>
+                                          <div class="bbar" style="height:88%"></div>
+                                          <div class="bbar" style="height:72%"></div>
+                                          <div class="bbar" style="height:95%"></div>
+                                          <div class="bbar" style="height:60%"></div>
+                                       </div>
+                                       <div class="d-flex justify-content-between mt-2" style="font-size:.62rem;color:var(--tx3)"><span>Innov</span><span>Scale</span><span>Market</span><span>Team</span><span>Finance</span><span>Invest</span></div>
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-5">
+                                    <div style="background:var(--bg3);border:1px solid var(--bd);border-radius:12px;padding:12px;height:100%;display:flex;flex-direction:column;gap:8px">
+                                       <div style="font-size:.71rem;color:var(--tx3);font-weight:600"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pur);box-shadow:0 0 6px var(--pur);margin-right:6px;animation:bpls 2s infinite"></span>AI Copilot</div>
+                                       <div class="cbbl cbus">Generate a SaaS business plan</div>
+                                       <div class="cbbl cbai"><strong>Done.</strong> Executive summary, market &amp; SWOT ready to review.</div>
+                                       <div style="display:flex;gap:4px;padding:8px 12px">
+                                          <div class="tdot"></div>
+                                          <div class="tdot" style="animation-delay:.15s"></div>
+                                          <div class="tdot" style="animation-delay:.3s"></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- SOCIAL PROOF -->
+         <section id="proof">
+            <div class="container">
+               <div class="row g-3 align-items-center text-center">
+                  <div class="col-6 col-sm-3">
+                     <div class="pnum">4.9/5</div>
+                     <div class="plbl"><i class="fa-solid fa-star text-warning me-1"></i>Founder Rating</div>
+                  </div>
+                  <div class="col-6 col-sm-3">
+                     <div class="pnum">12K+</div>
+                     <div class="plbl">Startups Launched</div>
+                  </div>
+                  <div class="col-6 col-sm-3">
+                     <div class="pnum">$240M+</div>
+                     <div class="plbl">Funding Raised</div>
+                  </div>
+                  <div class="col-6 col-sm-3">
+                     <div class="pnum">60+</div>
+                     <div class="plbl">Countries Supported</div>
+                  </div>
+               </div>
+               <div class="lscroll">
+                  <div class="ltrack"><span class="lbr">Y Combinator</span><span class="lbr">Techstars</span><span class="lbr">500 Global</span><span class="lbr">Antler</span><span class="lbr">Seedcamp</span><span class="lbr">Plug &amp; Play</span><span class="lbr">a16z</span><span class="lbr">Sequoia</span><span class="lbr">Station F</span><span class="lbr">Y Combinator</span><span class="lbr">Techstars</span><span class="lbr">500 Global</span><span class="lbr">Antler</span><span class="lbr">Seedcamp</span><span class="lbr">Plug &amp; Play</span><span class="lbr">a16z</span><span class="lbr">Sequoia</span><span class="lbr">Station F</span></div>
+               </div>
+            </div>
+         </section>
+         <!-- PROBLEM -->
+         <section class="sp position-relative">
+            <div class="aur aur-b" style="top:50%;right:-200px;transform:translateY(-50%)"></div>
+            <div class="container position-relative" style="z-index:1">
+               <div class="text-center mb-5 rv">
+                  <span class="slbl">The Problem</span>
+                  <h2 class="stitle">Building a startup is <span class="gt">overwhelming</span></h2>
+                  <p class="ssub mx-auto">Founders burn months on documents and research before they ever talk to an investor.</p>
+               </div>
+               <div class="row g-4">
+                  <div class="col-md-4 rv">
+                     <div class="gc p-4 h-100">
+                        <div style="width:52px;height:52px;border-radius:14px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fa-regular fa-clock fa-lg" style="color:#f87171"></i></div>
+                        <h3 class="fw-semibold fs-5 mb-2">Months of Busywork</h3>
+                        <p style="font-size:.875rem;color:var(--tx2)">Writing a business plan and pitch deck from scratch takes weeks. Most founders stall before they finish, losing momentum and market timing.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 rv" style="transition-delay:.1s">
+                     <div class="gc p-4 h-100">
+                        <div style="width:52px;height:52px;border-radius:14px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2);display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fa-solid fa-circle-question fa-lg" style="color:#fbbf24"></i></div>
+                        <h3 class="fw-semibold fs-5 mb-2">No Investor Feedback</h3>
+                        <p style="font-size:.875rem;color:var(--tx2)">It's hard to know if your idea is investment-ready. Without an honest assessment, you pitch too early and burn precious investor relationships.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 rv" style="transition-delay:.2s">
+                     <div class="gc p-4 h-100">
+                        <div style="width:52px;height:52px;border-radius:14px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2);display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fa-solid fa-passport fa-lg" style="color:#a78bfa"></i></div>
+                        <h3 class="fw-semibold fs-5 mb-2">Funding &amp; Visa Maze</h3>
+                        <p style="font-size:.875rem;color:var(--tx2)">Accelerators, grants, and startup visas are scattered across dozens of countries. Finding the right fit feels impossible without expensive advisors.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- FEATURES -->
+         <section id="features" class="sp" style="background:var(--bg2)">
+            <div class="container">
+               <div class="text-center mb-5 rv">
+                  <span class="slbl">Core Modules</span>
+                  <h2 class="stitle">Everything you need to <span class="gt">launch and raise</span></h2>
+                  <p class="ssub mx-auto">Four AI modules that take you from raw idea to investment-ready startup.</p>
+               </div>
+               <div class="row g-3">
+                  <div class="col-md-6 rv">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-file-lines"></i></div>
+                        <h3 class="fs-5 fw-semibold mb-2">AI Business Plan Generator</h3>
+                        <p style="font-size:.875rem;color:var(--tx2)">Describe your idea and Nova writes a full plan: executive summary, market analysis, business model, SWOT, and growth strategy, structured the way investors expect.</p>
+                        <span class="ftag">Investor-ready</span>
+                     </div>
+                  </div>
+                  <div class="col-md-6 rv" style="transition-delay:.05s">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <h3 class="fs-5 fw-semibold mb-2">AI Pitch Deck Generator</h3>
+                        <p style="font-size:.875rem;color:var(--tx2)">Generate a complete 10-slide deck, from problem and solution to traction, team, and the funding ask, ready to present or export.</p>
+                        <span class="ftag">10 slides in minutes</span>
+                     </div>
+                  </div>
+                  <div class="col-md-6 rv" style="transition-delay:.1s">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-gauge-high"></i></div>
+                        <h3 class="fs-5 fw-semibold mb-2">Startup Readiness Assessment</h3>
+                        <p style="font-size:.875rem;color:var(--tx2)">Get scored on innovation, scalability, market, and investment readiness, with concrete recommendations to close the gaps before you pitch.</p>
+                        <span class="ftag">Scored &amp; actionable</span>
+                     </div>
+                  </div>
+                  <div class="col-md-6 rv" style="transition-delay:.15s">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <h3 class="fs-5 fw-semibold mb-2">Funding &amp; Visa Assistant</h3>
+                        <p style="font-size:.875rem;color:var(--tx2)">Match with accelerators, incubators, grants, and startup visa programs across 60+ countries, ranked by fit for your stage and sector.</p>
+                        <span class="ftag">60+ countries</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- HOW IT WORKS -->
+         <section id="how" class="sp" style="background:var(--bg3)">
+            <div class="container">
+               <div class="text-center mb-5 rv">
+                  <span class="slbl">How It Works</span>
+                  <h2 class="stitle">From idea to funding in <span class="gt">4 steps</span></h2>
+               </div>
+               <div class="row g-4">
+                  <div class="col-md-3 col-sm-6 rv">
+                     <div class="gc p-4 h-100 text-center">
+                        <div class="hnum">1</div>
+                        <h3 class="fs-6 fw-semibold mb-2">Describe your startup</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Tell Nova your idea, industry, and target market in plain language. No templates to fill.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 rv" style="transition-delay:.1s">
+                     <div class="gc p-4 h-100 text-center">
+                        <div class="hnum">2</div>
+                        <h3 class="fs-6 fw-semibold mb-2">Let AI analyze your idea</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Nova researches your market, evaluates feasibility, and scores your readiness instantly.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 rv" style="transition-delay:.2s">
+                     <div class="gc p-4 h-100 text-center">
+                        <div class="hnum">3</div>
+                        <h3 class="fs-6 fw-semibold mb-2">Generate startup documents</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Get a polished business plan and pitch deck you can edit, export, and share with investors.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 rv" style="transition-delay:.3s">
+                     <div class="gc p-4 h-100 text-center">
+                        <div class="hnum">4</div>
+                        <h3 class="fs-6 fw-semibold mb-2">Prepare for funding &amp; growth</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Match with funding, accelerators, and startup visas to launch and scale faster.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- BENEFITS -->
+         <section id="benefits" class="sp position-relative">
+            <div class="aur aur-a" style="top:50%;left:-200px;transform:translateY(-50%)"></div>
+            <div class="container position-relative" style="z-index:1">
+               <div class="text-center mb-5 rv">
+                  <span class="slbl">Benefits</span>
+                  <h2 class="stitle">Why founders choose <span class="gt">Nova</span></h2>
+               </div>
+               <div class="row g-3">
+                  <div class="col-md-3 col-sm-6 rv">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 class="fs-6 fw-semibold mb-2">Save Time</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Compress weeks of planning into minutes so you can focus on building and selling.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 rv" style="transition-delay:.1s">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="fs-6 fw-semibold mb-2">Improve Investor Readiness</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Walk into every pitch knowing exactly where your startup stands and how to improve.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 rv" style="transition-delay:.2s">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-rocket"></i></div>
+                        <h3 class="fs-6 fw-semibold mb-2">Launch Faster</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Go from concept to a complete, fundable package without hiring consultants.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 rv" style="transition-delay:.3s">
+                     <div class="gc p-4 h-100">
+                        <div class="ftico"><i class="fa-solid fa-earth-americas"></i></div>
+                        <h3 class="fs-6 fw-semibold mb-2">Access Funding Opportunities</h3>
+                        <p style="font-size:.85rem;color:var(--tx2)">Discover grants, accelerators, and visa programs matched to your startup worldwide.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- PRICING -->
+         <section id="pricing" class="sp position-relative" style="background:var(--bg2)">
+            <div class="aur aur-a" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+            <div class="container position-relative" style="z-index:1">
+               <div class="text-center mb-5 rv">
+                  <span class="slbl">Pricing</span>
+                  <h2 class="stitle">Simple, <span class="gt">founder-friendly pricing</span></h2>
+                  <p class="ssub mx-auto">Start free, upgrade when you're ready to raise. No credit card required.</p>
+               </div>
+               <div class="d-flex align-items-center justify-content-center gap-3 mb-5 rv">
+                  <span style="font-size:.9rem;color:var(--tx2);font-weight:500">Monthly</span>
+                  <div style="position:relative;width:52px;height:28px"><input type="checkbox" id="ptog" style="position:absolute;opacity:0;width:0;height:0"><label for="ptog" id="ptogLabel" style="position:absolute;inset:0;background:var(--sf);border:1px solid var(--bd2);border-radius:100px;cursor:pointer;transition:.3s"><span id="ptogThumb" style="position:absolute;width:20px;height:20px;left:3px;top:3px;background:var(--grad);border-radius:50%;transition:.3s;display:block"></span></label></div>
+                  <span style="font-size:.9rem;color:var(--tx2);font-weight:500">Yearly</span>
+                  <span style="background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:#34d399;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:100px"><i class="fa-solid fa-tag me-1"></i>Save 30%</span>
+               </div>
+               <div class="row g-4 align-items-start rv">
+                  <div class="col-md-4">
+                     <div class="pcard h-100">
+                        <div style="font-size:.82rem;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Free</div>
+                        <div class="pamt mb-1"><sup>$</sup><span class="pv" data-m="0" data-y="0">0</span></div>
+                        <div style="font-size:.82rem;color:var(--tx3)" class="pper">forever, no credit card</div>
+                        <p style="font-size:.875rem;color:var(--tx2);margin:14px 0 20px;padding-bottom:20px;border-bottom:1px solid var(--bd)">Validate your idea and explore what Nova can do.</p>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>1 startup workspace</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>1 AI business plan</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Startup readiness score</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Basic AI Copilot access</div>
+                        <button class="boc btn w-100 py-2 mt-4" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('signup')">Start Free</button>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="pcard pop h-100">
+                        <span class="pbadge"><i class="fa-solid fa-star me-1"></i>Most Popular</span>
+                        <div style="font-size:.82rem;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Pro</div>
+                        <div class="pamt mb-1"><sup>$</sup><span class="pv" data-m="39" data-y="27">39</span></div>
+                        <div style="font-size:.82rem;color:var(--tx3)" class="pper">per month, billed monthly</div>
+                        <p style="font-size:.875rem;color:var(--tx2);margin:14px 0 20px;padding-bottom:20px;border-bottom:1px solid var(--bd)">For founders actively building and preparing to raise.</p>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Unlimited business plans</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Unlimited pitch decks</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Full readiness assessments</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Funding &amp; visa matching</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Unlimited AI Copilot</div>
+                        <button class="bgrd btn w-100 py-2 mt-4" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('signup')">Get Started <i class="fa-solid fa-arrow-right ms-1 fa-sm"></i></button>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="pcard h-100">
+                        <div style="font-size:.82rem;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Startup</div>
+                        <div class="pamt mb-1"><sup>$</sup><span class="pv" data-m="99" data-y="69">99</span></div>
+                        <div style="font-size:.82rem;color:var(--tx3)" class="pper">per month, billed monthly</div>
+                        <p style="font-size:.875rem;color:var(--tx2);margin:14px 0 20px;padding-bottom:20px;border-bottom:1px solid var(--bd)">For teams scaling toward a funding round.</p>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Everything in Pro</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Up to 5 team seats</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Investor-ready PDF exports</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Priority funding intros</div>
+                        <div class="pfl"><span class="pchk"><i class="fa-solid fa-check"></i></span>Dedicated success manager</div>
+                        <button class="boc btn w-100 py-2 mt-4" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('signup')">Start Startup Plan</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- TESTIMONIALS -->
+         <section id="testimonials" class="sp">
+            <div class="container">
+               <div class="text-center mb-5 rv">
+                  <span class="slbl">Testimonials</span>
+                  <h2 class="stitle">Loved by <span class="gt">founders worldwide</span></h2>
+               </div>
+               <div class="row g-3">
+                  <div class="col-md-4 rv">
+                     <div class="gc p-4 h-100">
+                        <div class="d-flex gap-1 mb-3"><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i></div>
+                        <p style="font-size:.875rem;color:var(--tx2);line-height:1.65;font-style:italic;margin-bottom:18px">"Nova generated a pitch deck in an afternoon that took my last startup three weeks. We closed our pre-seed two months faster."</p>
+                        <div class="d-flex align-items-center gap-2">
+                           <img class="tav" src="img/avatar/avatar-2.jpg" alt="Lina">
+                           <div>
+                              <div style="font-size:.88rem;font-weight:600">Lina Park</div>
+                              <div style="font-size:.76rem;color:var(--tx3)">Founder, FlowHealth</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4 rv" style="transition-delay:.1s">
+                     <div class="gc p-4 h-100">
+                        <div class="d-flex gap-1 mb-3"><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i></div>
+                        <p style="font-size:.875rem;color:var(--tx2);line-height:1.65;font-style:italic;margin-bottom:18px">"The readiness assessment was brutally honest in the best way. It told us exactly what investors would push back on."</p>
+                        <div class="d-flex align-items-center gap-2">
+                           <img class="tav" src="img/avatar/avatar-5.jpg" alt="Omar">
+                           <div>
+                              <div style="font-size:.88rem;font-weight:600">Omar Benali</div>
+                              <div style="font-size:.76rem;color:var(--tx3)">CEO, Dabba Logistics</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4 rv" style="transition-delay:.2s">
+                     <div class="gc p-4 h-100">
+                        <div class="d-flex gap-1 mb-3"><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i><i class="fa-solid fa-star text-warning"></i></div>
+                        <p style="font-size:.875rem;color:var(--tx2);line-height:1.65;font-style:italic;margin-bottom:18px">"The visa assistant matched us with a startup visa program we'd never heard of. We relocated and got into an accelerator."</p>
+                        <div class="d-flex align-items-center gap-2">
+                           <img class="tav" src="img/avatar/avatar-9.jpg" alt="Sara">
+                           <div>
+                              <div style="font-size:.88rem;font-weight:600">Sara M&uuml;ller</div>
+                              <div style="font-size:.76rem;color:var(--tx3)">Co-founder, GridSense</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- FAQ -->
+         <section id="faq" class="sp" style="background:var(--bg2)">
+            <div class="container">
+               <div class="text-center mb-5 rv">
+                  <span class="slbl">FAQ</span>
+                  <h2 class="stitle">Common <span class="gt">questions</span></h2>
+               </div>
+               <div class="row justify-content-center rv">
+                  <div class="col-lg-8">
+                     <div class="accordion acco" id="faqAcc">
+                        <div class="accordion-item">
+                           <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1">Do I need a finished idea to use Nova?</button></h2>
+                           <div id="f1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc">
+                              <div class="accordion-body">Not at all. Even a rough concept works. The AI Copilot helps you sharpen your idea, then generates your plan, deck, and readiness score from there.</div>
+                           </div>
+                        </div>
+                        <div class="accordion-item">
+                           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">Are the documents really investor-ready?</button></h2>
+                           <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                              <div class="accordion-body">Yes. Plans and decks follow the structure investors expect, from executive summary and market analysis to traction and funding ask. You can edit everything before exporting.</div>
+                           </div>
+                        </div>
+                        <div class="accordion-item">
+                           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">How does the Funding &amp; Visa Assistant work?</button></h2>
+                           <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                              <div class="accordion-body">Nova matches your startup's stage, sector, and goals against accelerators, incubators, grants, and startup visa programs across 60+ countries, ranked by fit.</div>
+                           </div>
+                        </div>
+                        <div class="accordion-item">
+                           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">Is there a free plan?</button></h2>
+                           <div id="f4" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                              <div class="accordion-body">Yes. The Free plan lets you create a workspace, generate one business plan, and get your readiness score, with no credit card required. Upgrade anytime.</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- FINAL CTA -->
+         <section id="cta">
+            <div class="aur aur-a" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(139,92,246,.2),transparent 70%);pointer-events:none"></div>
+            <div class="container position-relative" style="z-index:2">
+               <div class="rv">
+                  <span class="hbadge mb-4 d-inline-flex"><span class="bdot"></span>Free to start &middot; No credit card required</span>
+                  <h2 style="font-size:clamp(2rem,5vw,3.8rem);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin-bottom:18px">Ready to build your<br><span class="gt">investment-ready startup?</span></h2>
+                  <p style="font-size:1.05rem;color:var(--tx2);max-width:520px;margin:0 auto 36px">Join 12,000+ founders using Nova StartupOS AI to plan, pitch, and fund their startups.</p>
+                  <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+                     <button class="bgrd btn px-4 py-3 fs-6" data-bs-toggle="offcanvas" data-bs-target="#lofc" onclick="swTab('signup')">Start Free Today <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                     <a href="https://www.youtube.com/watch?v=ScMzIvxBSi4" class="boc btn px-4 py-3 fs-6 vidpop"><i class="fa-regular fa-circle-play me-2"></i>Watch Demo</a>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- FOOTER -->
+         <footer id="foot">
+            <div class="container">
+               <div class="row g-5 mb-5">
+                  <div class="col-lg-4">
+                     <a class="d-flex align-items-center gap-2 mb-3" href="#" style="font-size:1.15rem;font-weight:700;color:var(--tx)">
+                        <div class="logo-i"><i class="fa-solid fa-rocket"></i></div>
+                        Nova<span class="gt">StartupOS</span>
+                     </a>
+                     <p style="font-size:.875rem;color:var(--tx3);line-height:1.65;max-width:280px">The AI-powered operating system that turns startup ideas into investment-ready ventures.</p>
+                     <div class="d-flex gap-2 mt-3"><input class="nli" type="email" placeholder="your@email.com" style="max-width:200px"><button class="bgrd btn px-3 py-2" style="font-size:.85rem;white-space:nowrap">Subscribe</button></div>
+                  </div>
+                  <div class="col-6 col-md-2 fcol">
+                     <h5>Product</h5>
+                     <a href="#features">Business Plans</a><a href="#features">Pitch Decks</a><a href="#features">Readiness</a><a href="#features">Funding</a><a href="#pricing">Pricing</a>
+                  </div>
+                  <div class="col-6 col-md-2 fcol">
+                     <h5>Resources</h5>
+                     <a href="#">Founder Guide</a><a href="#">Templates</a><a href="#">Blog</a><a href="#">Funding Database</a><a href="#">Community</a>
+                  </div>
+                  <div class="col-6 col-md-2 fcol">
+                     <h5>Company</h5>
+                     <a href="#">About</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Privacy</a><a href="#">Terms</a>
+                  </div>
+               </div>
+               <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 pt-4" style="border-top:1px solid var(--bd)">
+                  <p style="font-size:.8rem;color:var(--tx3);margin:0">&copy; 2026 Nova StartupOS AI. All rights reserved.</p>
+                  <div class="d-flex gap-2"><a href="#" class="sico" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a href="#" class="sico" aria-label="GitHub"><i class="fa-brands fa-github"></i></a><a href="#" class="sico" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" class="sico" aria-label="Discord"><i class="fa-brands fa-discord"></i></a></div>
+               </div>
+            </div>
+         </footer>
+      </div>
+      <!-- /landing -->
+
+      <!-- ======================== LOGIN / SIGNUP OFFCANVAS ======================== -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="lofc">
+         <div class="offcanvas-header">
+            <div class="d-flex align-items-center gap-2">
+               <div class="logo-i" style="width:30px;height:30px;font-size:.8rem"><i class="fa-solid fa-rocket"></i></div>
+               <h5 class="offcanvas-title mb-0">Nova StartupOS AI</h5>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="filter:invert(1)"></button>
+         </div>
+         <div class="offcanvas-body p-4">
+            <div class="tab-switch"><button class="tab-sw-btn on" id="tabLogin" onclick="swTab('login')">Log In</button><button class="tab-sw-btn" id="tabSignup" onclick="swTab('signup')">Sign Up</button></div>
+            <!-- Login -->
+            <div id="fLogin">
+               <div id="loginErr" class="err-msg"><i class="fa-solid fa-circle-exclamation me-1"></i><span id="loginErrMsg">Invalid email or password.</span></div>
+               <label class="olbl" for="loginEmail"><i class="fa-regular fa-envelope me-1"></i>Email address</label>
+               <input class="oinp" type="email" id="loginEmail" placeholder="you@startup.com">
+               <label class="olbl" for="loginPass"><i class="fa-solid fa-lock me-1"></i>Password</label>
+               <input class="oinp" type="password" id="loginPass" placeholder="********">
+               <div class="text-end mb-3" style="margin-top:-8px"><a href="#" style="font-size:.8rem;color:var(--pur)">Forgot password?</a></div>
+               <button class="bgrd btn w-100 py-3 fw-semibold fs-6" id="loginBtn" onclick="doLogin()">Log In <i class="fa-solid fa-arrow-right ms-1 fa-sm"></i></button>
+               <div class="odiv">or continue with</div>
+               <button class="oauth" onclick="quickLogin('google')"><i class="fa-brands fa-google me-2"></i>Continue with Google</button>
+               <button class="oauth" onclick="quickLogin('github')"><i class="fa-brands fa-github me-2"></i>Continue with GitHub</button>
+               <p class="text-center mt-4" style="font-size:.82rem;color:var(--tx3)">Don't have an account? <a href="#" style="color:var(--pur)" onclick="swTab('signup');return false">Sign up free</a></p>
+            </div>
+            <!-- Sign Up -->
+            <div id="fSignup" style="display:none">
+               <div id="signupErr" class="err-msg"><i class="fa-solid fa-circle-exclamation me-1"></i><span id="signupErrMsg">Please fill all fields.</span></div>
+               <label class="olbl" for="signupName"><i class="fa-regular fa-user me-1"></i>Full name</label>
+               <input class="oinp" type="text" id="signupName" placeholder="Jane Smith">
+               <label class="olbl" for="signupEmail"><i class="fa-regular fa-envelope me-1"></i>Work email</label>
+               <input class="oinp" type="email" id="signupEmail" placeholder="you@startup.com">
+               <label class="olbl" for="signupPass"><i class="fa-solid fa-lock me-1"></i>Password</label>
+               <input class="oinp" type="password" id="signupPass" placeholder="Min. 8 characters">
+               <button class="bgrd btn w-100 py-3 fw-semibold fs-6" id="signupBtn" onclick="doSignup()">Create Free Account <i class="fa-solid fa-arrow-right ms-1 fa-sm"></i></button>
+               <div class="odiv">or sign up with</div>
+               <button class="oauth" onclick="quickLogin('google')"><i class="fa-brands fa-google me-2"></i>Continue with Google</button>
+               <button class="oauth" onclick="quickLogin('github')"><i class="fa-brands fa-github me-2"></i>Continue with GitHub</button>
+               <p class="text-center mt-3" style="font-size:.76rem;color:var(--tx3)">By signing up, you agree to our <a href="#" style="color:var(--pur)">Terms</a> &amp; <a href="#" style="color:var(--pur)">Privacy Policy</a></p>
+            </div>
+         </div>
+      </div>
+
+      <!-- ======================== DASHBOARD (Founder OS) ======================== -->
+      <div id="dashboard">
+         <!-- Sidebar -->
+         <div class="db-sidebar" id="dbSidebar">
+            <div class="db-logo">
+               <div class="logo-i"><i class="fa-solid fa-rocket"></i></div>
+               <span>Nova<span class="gt">OS</span></span>
+            </div>
+            <!-- Workspace switcher -->
+            <div class="ws-switcher" id="wsSwitcher" onclick="toggleWsMenu(event)">
+               <div class="ws-ico"><i class="fa-solid fa-briefcase"></i></div>
+               <div style="flex:1;min-width:0">
+                  <div class="ws-name" id="wsName">My Workspace</div>
+                  <div style="font-size:.68rem;color:var(--tx3)" id="wsMeta">0 startups</div>
+               </div>
+               <i class="fa-solid fa-chevron-down fa-xs" style="color:var(--tx3)"></i>
+               <div class="ws-menu" id="wsMenu"></div>
+            </div>
+            <div class="db-nav">
+               <div class="db-nav-section">Founder OS</div>
+               <button class="db-nl active" onclick="dbNav('overview',this)"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+               <button class="db-nl" onclick="dbNav('startups',this)"><i class="fa-solid fa-layer-group"></i> My Startups <span class="db-badge" id="navStartupCount">0</span></button>
+               <button class="db-nl" onclick="dbNav('analytics',this)"><i class="fa-solid fa-chart-pie"></i> Analytics</button>
+               <button class="db-nl" onclick="dbNav('documents',this)"><i class="fa-solid fa-folder-open"></i> Documents</button>
+               <div class="db-nav-section">AI Modules</div>
+               <button class="db-nl" onclick="dbNav('plans',this)"><i class="fa-solid fa-file-lines"></i> Business Plans</button>
+               <button class="db-nl" onclick="dbNav('decks',this)"><i class="fa-solid fa-chalkboard-user"></i> Pitch Decks</button>
+               <button class="db-nl" onclick="dbNav('readiness',this)"><i class="fa-solid fa-gauge"></i> Readiness Assessment</button>
+               <button class="db-nl" onclick="dbNav('funding',this)"><i class="fa-solid fa-sack-dollar"></i> Funding Assistant</button>
+               <button class="db-nl" onclick="dbNav('visa',this)"><i class="fa-solid fa-passport"></i> Visa Assistant</button>
+               <div class="db-nav-section">Assistant</div>
+               <button class="db-nl" onclick="dbNav('copilot',this)"><i class="fa-solid fa-robot"></i> AI Copilot <span class="db-badge" id="aiModeBadge" style="background:#fbbf24;color:#1a1a1a">Demo</span></button>
+               <button class="db-nl" onclick="dbNav('billing',this)"><i class="fa-solid fa-credit-card"></i> Billing</button>
+               <button class="db-nl" onclick="dbNav('settings',this)"><i class="fa-solid fa-gear"></i> Settings</button>
+            </div>
+            <div class="db-bottom">
+               <button class="db-nl" onclick="doLogout()" style="color:#f87171"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+            </div>
+         </div>
+         <!-- Top bar -->
+         <div class="db-top">
+            <button class="boc d-lg-none me-2 px-2 py-2" style="border-radius:10px;width:38px;height:38px" onclick="document.getElementById('dbSidebar').classList.toggle('mob-open')" aria-label="Toggle sidebar">
+            <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="db-top-search">
+               <i class="fa-solid fa-magnifying-glass"></i>
+               <input type="text" placeholder="Search startups, plans, funding...">
+            </div>
+            <div class="ms-auto d-flex align-items-center gap-3">
+               <button class="bgrd btn d-none d-md-flex align-items-center gap-2 px-3 py-2" style="font-size:.82rem" onclick="dbNav('copilot',document.querySelector('[onclick*=copilot]'))"><i class="fa-solid fa-robot"></i> Ask Copilot</button>
+               <button class="boc d-flex align-items-center justify-content-center" id="dbThBtn" style="width:38px;height:38px;padding:0;border-radius:12px" onclick="toggleTheme()" aria-label="Toggle theme">
+               <i class="fa-solid fa-sun" id="dbSunI" style="display:none"></i>
+               <i class="fa-solid fa-moon" id="dbMoonI"></i>
+               </button>
+               <div style="position:relative" id="notifWrap">
+                  <button class="boc d-flex align-items-center justify-content-center" id="bellBtn" style="width:38px;height:38px;padding:0;border-radius:12px" onclick="toggleNotif(event)" aria-label="Notifications">
+                  <i class="fa-regular fa-bell"></i>
+                  </button>
+                  <span id="notifBadge" style="position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:#f87171;border:2px solid var(--bg)"></span>
+                  <div class="db-dropdown" id="notifDropdown" style="right:0;min-width:360px">
+                     <div class="dd-header">
+                        <div class="dd-header-title"><i class="fa-regular fa-bell me-2" style="color:var(--pur)"></i>Notifications <span id="unreadCount" style="background:rgba(248,113,113,.15);color:#f87171;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:100px;margin-left:6px">3 new</span></div>
+                        <div class="d-flex gap-2">
+                           <button class="dd-close" onclick="markAllRead()" title="Mark all read" style="width:auto;padding:4px 10px;font-size:.72rem;color:var(--pur);border-color:rgba(139,92,246,.3)">Mark all read</button>
+                           <button class="dd-close" onclick="toggleNotif(event)"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                     </div>
+                     <div class="dd-body" id="notifList">
+                        <div class="notif-item notif-unread d-flex gap-3 mb-2">
+                           <div class="notif-ico" style="background:rgba(52,211,153,.12)"><i class="fa-solid fa-sack-dollar" style="color:#34d399;font-size:.9rem"></i></div>
+                           <div style="flex:1">
+                              <div style="font-size:.85rem;font-weight:600;margin-bottom:3px">6 new funding matches</div>
+                              <div style="font-size:.78rem;color:var(--tx2)">Nova found 6 accelerators that fit your SaaS startup stage.</div>
+                              <div style="font-size:.7rem;color:var(--tx3);margin-top:5px"><i class="fa-regular fa-clock me-1"></i>4 minutes ago</div>
+                           </div>
+                           <div class="notif-dot"></div>
+                        </div>
+                        <div class="notif-item notif-unread d-flex gap-3 mb-2">
+                           <div class="notif-ico" style="background:rgba(139,92,246,.12)"><i class="fa-solid fa-file-lines" style="color:#a78bfa;font-size:.9rem"></i></div>
+                           <div style="flex:1">
+                              <div style="font-size:.85rem;font-weight:600;margin-bottom:3px">Business plan ready</div>
+                              <div style="font-size:.78rem;color:var(--tx2)">Your "FlowHealth" business plan finished generating.</div>
+                              <div style="font-size:.7rem;color:var(--tx3);margin-top:5px"><i class="fa-regular fa-clock me-1"></i>22 minutes ago</div>
+                           </div>
+                           <div class="notif-dot"></div>
+                        </div>
+                        <div class="notif-item notif-unread d-flex gap-3 mb-2">
+                           <div class="notif-ico" style="background:rgba(245,158,11,.1)"><i class="fa-solid fa-gauge" style="color:#fbbf24;font-size:.9rem"></i></div>
+                           <div style="flex:1">
+                              <div style="font-size:.85rem;font-weight:600;margin-bottom:3px">Readiness score improved</div>
+                              <div style="font-size:.78rem;color:var(--tx2)">Your startup score went up 12 points to 82 this week.</div>
+                              <div style="font-size:.7rem;color:var(--tx3);margin-top:5px"><i class="fa-regular fa-clock me-1"></i>1 hour ago</div>
+                           </div>
+                           <div class="notif-dot"></div>
+                        </div>
+                     </div>
+                     <div style="padding:12px 14px;border-top:1px solid var(--bd);text-align:center">
+                        <button class="boc btn w-100 py-2" style="font-size:.82rem;border-radius:10px"><i class="fa-solid fa-list me-1"></i>View All Notifications</button>
+                     </div>
+                  </div>
+               </div>
+               <div style="position:relative" id="profileWrap">
+                  <div class="db-user-pill" id="userPill" onclick="toggleProfile(event)">
+                     <div class="db-avatar" id="userAvatar">U</div>
+                     <div class="d-none d-md-block">
+                        <div style="font-size:.85rem;font-weight:600;line-height:1.2" id="userName">User</div>
+                        <div style="font-size:.72rem;color:var(--tx3)" id="userPlan">Pro Plan</div>
+                     </div>
+                     <i class="fa-solid fa-chevron-down fa-xs" id="profileChevron" style="color:var(--tx3);margin-left:2px;transition:.3s"></i>
+                  </div>
+                  <div class="db-dropdown profile-dd" id="profileDropdown" style="right:0">
+                     <div class="profile-dd-top">
+                        <div class="db-avatar" id="pdAvatar" style="width:46px;height:46px;border-radius:14px;font-size:1rem;flex-shrink:0">U</div>
+                        <div>
+                           <div style="font-weight:700;font-size:.95rem" id="pdName">User</div>
+                           <div style="font-size:.78rem;color:var(--tx3)" id="pdEmail">user@email.com</div>
+                           <div style="margin-top:5px"><span class="bst son" style="font-size:.68rem" id="pdPlan">Pro Plan</span></div>
+                        </div>
+                     </div>
+                     <div style="padding:8px 0">
+                        <button class="profile-menu-item" onclick="dbNav('settings',document.querySelector('[onclick*=settings]'));toggleProfile()"><i class="fa-regular fa-user" style="color:var(--pur)"></i>My Profile</button>
+                        <button class="profile-menu-item" onclick="dbNav('startups',document.querySelector('[onclick*=startups]'));toggleProfile()"><i class="fa-solid fa-layer-group" style="color:#60a5fa"></i>My Startups</button>
+                        <button class="profile-menu-item" onclick="dbNav('copilot',document.querySelector('[onclick*=copilot]'));toggleProfile()"><i class="fa-solid fa-robot" style="color:#34d399"></i>AI Copilot</button>
+                        <div style="height:1px;background:var(--bd);margin:8px 16px"></div>
+                        <div style="padding:8px 16px 4px">
+                           <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3);margin-bottom:8px">Current Plan</div>
+                           <div style="background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(59,130,246,.08));border:1px solid rgba(139,92,246,.25);border-radius:12px;padding:12px">
+                              <div style="font-weight:700;font-size:.88rem;margin-bottom:3px" id="pdPlanDetail">Pro Plan</div>
+                              <div style="font-size:.76rem;color:var(--tx2);margin-bottom:8px">Next billing: July 1, 2026</div>
+                              <button class="bgrd btn w-100 py-1" style="font-size:.75rem;border-radius:8px">Upgrade to Startup</button>
+                           </div>
+                        </div>
+                        <div style="height:1px;background:var(--bd);margin:8px 16px"></div>
+                        <button class="profile-menu-item danger" onclick="doLogout();toggleProfile()"><i class="fa-solid fa-right-from-bracket" style="color:#f87171"></i>Log Out</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Main Content -->
+         <div class="db-main">
+            <div class="db-content">
+               <!-- ============ DASHBOARD HOME (OVERVIEW) ============ -->
+               <div class="db-section active" id="sec-overview">
+                  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+                     <div>
+                        <h4 class="mb-1" style="font-size:1.4rem;font-weight:700">Good morning, <span id="greetName">Founder</span> <i class="fa-solid fa-rocket" style="color:var(--pur)"></i></h4>
+                        <p style="font-size:.875rem;color:var(--tx3);margin:0">Here's how your startup is progressing today.</p>
+                     </div>
+                     <button class="bgrd btn px-3 py-2" style="font-size:.85rem;white-space:nowrap" onclick="dbNav('copilot',document.querySelector('[onclick*=copilot]'))"><i class="fa-solid fa-robot me-2"></i>Ask AI Copilot</button>
+                  </div>
+                  <!-- Top row: Startup Score + Stats -->
+                  <div class="row g-3 mb-4">
+                     <div class="col-lg-4">
+                        <div class="db-stat-card h-100 d-flex flex-column align-items-center justify-content-center text-center">
+                           <div style="font-size:.78rem;color:var(--tx3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Startup Score</div>
+                           <div class="score-ring" style="--val:82">
+                              <div class="score-ring-inner">
+                                 <div class="gt" style="font-size:2.4rem;font-weight:700;line-height:1">82</div>
+                                 <div style="font-size:.7rem;color:var(--tx3)">/ 100</div>
+                              </div>
+                           </div>
+                           <div class="mt-3"><span class="bst son"><i class="fa-solid fa-caret-up me-1"></i>+12 this week</span></div>
+                           <div style="font-size:.78rem;color:var(--tx2);margin-top:10px">Investment readiness: <strong style="color:#34d399">Strong</strong></div>
+                        </div>
+                     </div>
+                     <div class="col-lg-8">
+                        <div class="row g-3 h-100">
+                           <div class="col-6">
+                              <div class="db-stat-card">
+                                 <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <div style="width:38px;height:38px;border-radius:11px;background:rgba(139,92,246,.15);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-layer-group" style="color:#a78bfa"></i></div>
+                                    <span style="font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:100px;background:rgba(52,211,153,.1);color:#34d399"><i class="fa-solid fa-caret-up me-1"></i>1 new</span>
+                                 </div>
+                                 <div class="db-stat-val gt">3</div>
+                                 <div class="db-stat-lbl">Active Startups</div>
+                              </div>
+                           </div>
+                           <div class="col-6">
+                              <div class="db-stat-card">
+                                 <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <div style="width:38px;height:38px;border-radius:11px;background:rgba(96,165,250,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-file-lines" style="color:#60a5fa"></i></div>
+                                    <span style="font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:100px;background:rgba(96,165,250,.1);color:#60a5fa">Generated</span>
+                                 </div>
+                                 <div class="db-stat-val" style="color:#60a5fa">3</div>
+                                 <div class="db-stat-lbl">Business Plans</div>
+                              </div>
+                           </div>
+                           <div class="col-6">
+                              <div class="db-stat-card">
+                                 <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <div style="width:38px;height:38px;border-radius:11px;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-chalkboard-user" style="color:#fbbf24"></i></div>
+                                    <span style="font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:100px;background:rgba(245,158,11,.1);color:#fbbf24">Ready</span>
+                                 </div>
+                                 <div class="db-stat-val" style="color:#fbbf24">5</div>
+                                 <div class="db-stat-lbl">Pitch Decks</div>
+                              </div>
+                           </div>
+                           <div class="col-6">
+                              <div class="db-stat-card">
+                                 <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <div style="width:38px;height:38px;border-radius:11px;background:rgba(52,211,153,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-sack-dollar" style="color:#34d399"></i></div>
+                                    <span style="font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:100px;background:rgba(52,211,153,.1);color:#34d399"><i class="fa-solid fa-caret-up me-1"></i>6 new</span>
+                                 </div>
+                                 <div class="db-stat-val" style="color:#34d399">14</div>
+                                 <div class="db-stat-lbl">Funding Matches</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Quick Actions -->
+                  <div class="mb-2"><h5 style="font-size:1rem;font-weight:600"><i class="fa-solid fa-bolt me-2" style="color:var(--pur)"></i>Quick Actions</h5></div>
+                  <div class="row g-3 mb-4">
+                     <div class="col-md-3 col-sm-6">
+                        <button class="quick-action w-100 text-start" onclick="dbNav('plans',document.querySelector('[onclick*=plans]'))">
+                           <div class="qa-ico" style="background:rgba(139,92,246,.15);color:#a78bfa"><i class="fa-solid fa-file-lines"></i></div>
+                           <div class="fw-semibold">Generate Business Plan</div>
+                           <div style="font-size:.78rem;color:var(--tx3)">Full investor-ready plan</div>
+                        </button>
+                     </div>
+                     <div class="col-md-3 col-sm-6">
+                        <button class="quick-action w-100 text-start" onclick="dbNav('decks',document.querySelector('[onclick*=decks]'))">
+                           <div class="qa-ico" style="background:rgba(245,158,11,.12);color:#fbbf24"><i class="fa-solid fa-chalkboard-user"></i></div>
+                           <div class="fw-semibold">Create Pitch Deck</div>
+                           <div style="font-size:.78rem;color:var(--tx3)">10 slides in minutes</div>
+                        </button>
+                     </div>
+                     <div class="col-md-3 col-sm-6">
+                        <button class="quick-action w-100 text-start" onclick="dbNav('readiness',document.querySelector('[onclick*=readiness]'))">
+                           <div class="qa-ico" style="background:rgba(96,165,250,.12);color:#60a5fa"><i class="fa-solid fa-gauge"></i></div>
+                           <div class="fw-semibold">Run Assessment</div>
+                           <div style="font-size:.78rem;color:var(--tx3)">Score your readiness</div>
+                        </button>
+                     </div>
+                     <div class="col-md-3 col-sm-6">
+                        <button class="quick-action w-100 text-start" onclick="dbNav('funding',document.querySelector('[onclick*=funding]'))">
+                           <div class="qa-ico" style="background:rgba(52,211,153,.12);color:#34d399"><i class="fa-solid fa-sack-dollar"></i></div>
+                           <div class="fw-semibold">Find Funding</div>
+                           <div style="font-size:.78rem;color:var(--tx3)">Match accelerators &amp; grants</div>
+                        </button>
+                     </div>
+                  </div>
+                  <!-- Chart + Recent Activity -->
+                  <div class="row g-3">
+                     <div class="col-lg-8">
+                        <div style="background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:24px">
+                           <div class="d-flex align-items-center justify-content-between mb-3">
+                              <div style="font-weight:600"><i class="fa-solid fa-chart-area me-2" style="color:var(--pur)"></i>Startup Score Trend</div>
+                              <div style="font-size:.75rem;color:var(--tx3)">Last 30 days</div>
+                           </div>
+                           <canvas id="ovChart" height="100"></canvas>
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div style="background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:20px;height:100%">
+                           <div class="d-flex align-items-center justify-content-between mb-3">
+                              <div style="font-weight:600;font-size:.9rem">Recent Activity</div>
+                              <div class="d-flex align-items-center gap-2"><span style="width:7px;height:7px;border-radius:50%;background:#34d399;animation:bpls 1.5s infinite"></span><span style="font-size:.72rem;color:#34d399;font-weight:600">Live</span></div>
+                           </div>
+                           <div id="liveActivity" style="display:flex;flex-direction:column;gap:8px">
+                              <div style="display:flex;gap:10px;padding:10px;background:var(--bg3);border-radius:10px;font-size:.78rem"><span style="width:7px;height:7px;border-radius:50%;background:#34d399;margin-top:4px;flex-shrink:0"></span><span style="color:var(--tx2)">Business plan generated for FlowHealth</span><span style="margin-left:auto;color:var(--tx3);white-space:nowrap">2m ago</span></div>
+                              <div style="display:flex;gap:10px;padding:10px;background:var(--bg3);border-radius:10px;font-size:.78rem"><span style="width:7px;height:7px;border-radius:50%;background:#8b5cf6;margin-top:4px;flex-shrink:0"></span><span style="color:var(--tx2)">Readiness score updated to 82</span><span style="margin-left:auto;color:var(--tx3);white-space:nowrap">1h ago</span></div>
+                              <div style="display:flex;gap:10px;padding:10px;background:var(--bg3);border-radius:10px;font-size:.78rem"><span style="width:7px;height:7px;border-radius:50%;background:#34d399;margin-top:4px;flex-shrink:0"></span><span style="color:var(--tx2)">6 new funding matches found</span><span style="margin-left:auto;color:var(--tx3);white-space:nowrap">4h ago</span></div>
+                              <div style="display:flex;gap:10px;padding:10px;background:var(--bg3);border-radius:10px;font-size:.78rem"><span style="width:7px;height:7px;border-radius:50%;background:#fbbf24;margin-top:4px;flex-shrink:0"></span><span style="color:var(--tx2)">Pitch deck exported to PDF</span><span style="margin-left:auto;color:var(--tx3);white-space:nowrap">Yesterday</span></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- ============ MY STARTUPS ============ -->
+               <div class="db-section" id="sec-startups">
+                  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+                     <div>
+                        <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">My Startups</h4>
+                        <p style="font-size:.875rem;color:var(--tx3);margin:0">Every venture you're building, in one place.</p>
+                     </div>
+                     <button class="bgrd btn px-3 py-2" style="font-size:.85rem" onclick="NovaWizard.startWizard()"><i class="fa-solid fa-plus me-2"></i>New Startup</button>
+                  </div>
+                  <div class="row g-3" id="startupGrid"></div>
+               </div>
+               <!-- ============ ANALYTICS ============ -->
+               <div class="db-section" id="sec-analytics">
+                  <div class="mb-4">
+                     <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">Analytics</h4>
+                     <p style="font-size:.875rem;color:var(--tx3);margin:0">Portfolio-wide insight into progress, readiness, and funding.</p>
+                  </div>
+                  <div class="row g-3 mb-4">
+                     <div class="col-6 col-xl-3"><div class="db-stat-card"><div class="db-stat-val gt" id="anStartups">0</div><div class="db-stat-lbl">Startups Tracked</div></div></div>
+                     <div class="col-6 col-xl-3"><div class="db-stat-card"><div class="db-stat-val" style="color:#34d399" id="anAvgScore">0</div><div class="db-stat-lbl">Avg Readiness Score</div></div></div>
+                     <div class="col-6 col-xl-3"><div class="db-stat-card"><div class="db-stat-val" style="color:#60a5fa" id="anDocs">0</div><div class="db-stat-lbl">Documents Generated</div></div></div>
+                     <div class="col-6 col-xl-3"><div class="db-stat-card"><div class="db-stat-val" style="color:#fbbf24" id="anChats">0</div><div class="db-stat-lbl">Copilot Conversations</div></div></div>
+                  </div>
+                  <div class="row g-3">
+                     <div class="col-lg-7">
+                        <div class="nova-panel h-100">
+                           <h6 class="mb-3"><i class="fa-solid fa-chart-column me-2" style="color:var(--pur)"></i>Readiness by Startup</h6>
+                           <canvas id="anBarChart" height="200"></canvas>
+                        </div>
+                     </div>
+                     <div class="col-lg-5">
+                        <div class="nova-panel h-100">
+                           <h6 class="mb-3"><i class="fa-solid fa-layer-group me-2" style="color:#60a5fa"></i>Startups by Stage</h6>
+                           <canvas id="anStageChart" height="200"></canvas>
+                        </div>
+                     </div>
+                     <div class="col-12">
+                        <div class="nova-panel">
+                           <h6 class="mb-3"><i class="fa-solid fa-clock-rotate-left me-2" style="color:#34d399"></i>Funnel to Investment</h6>
+                           <div class="row g-3 text-center" id="anFunnel"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- ============ BUSINESS PLANS ============ -->
+               <div class="db-section" id="sec-plans">
+                  <div class="mb-4">
+                     <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">AI Business Plan Generator</h4>
+                     <p style="font-size:.875rem;color:var(--tx3);margin:0">Describe your startup and Nova drafts a complete, investor-ready plan.</p>
+                  </div>
+                  <div class="row g-3">
+                     <!-- Input form -->
+                     <div class="col-lg-4">
+                        <div class="nova-panel">
+                           <h6 class="mb-3"><i class="fa-solid fa-sliders me-2" style="color:var(--pur)"></i>Startup Details</h6>
+                           <form onsubmit="generatePlan(event)">
+                              <label class="nlbl" for="bpName">Startup Name</label>
+                              <input class="ninp" id="bpName" placeholder="e.g. FlowHealth" value="FlowHealth" required>
+                              <label class="nlbl" for="bpIndustry">Industry</label>
+                              <select class="ninp" id="bpIndustry">
+                                 <option>HealthTech</option><option>SaaS</option><option>FinTech</option><option>E-commerce</option><option>CleanTech</option><option>Logistics</option><option>EdTech</option><option>Other</option>
+                              </select>
+                              <label class="nlbl" for="bpCountry">Country</label>
+                              <input class="ninp" id="bpCountry" placeholder="e.g. Morocco" value="Morocco">
+                              <label class="nlbl" for="bpMarket">Target Market</label>
+                              <input class="ninp" id="bpMarket" placeholder="e.g. Clinics in MENA" value="Clinics and patients in MENA">
+                              <label class="nlbl" for="bpProblem">Problem</label>
+                              <textarea class="ninp" id="bpProblem" rows="2" placeholder="What problem do you solve?">Patients wait too long to reach the right care.</textarea>
+                              <label class="nlbl" for="bpSolution">Solution</label>
+                              <textarea class="ninp" id="bpSolution" rows="2" placeholder="How do you solve it?">An AI triage assistant that routes patients instantly.</textarea>
+                              <button class="bgrd btn w-100 py-2 mt-3" id="bpBtn" type="submit"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Generate Business Plan</button>
+                           </form>
+                        </div>
+                     </div>
+                     <!-- Output -->
+                     <div class="col-lg-8">
+                        <div id="bpEmpty" class="nova-panel text-center d-flex flex-column align-items-center justify-content-center" style="min-height:420px">
+                           <div class="qa-ico mb-2" style="background:rgba(139,92,246,.12);color:#a78bfa;width:64px;height:64px;font-size:1.5rem"><i class="fa-solid fa-file-lines"></i></div>
+                           <h6 class="mb-1">Your business plan will appear here</h6>
+                           <p style="font-size:.85rem;color:var(--tx3);max-width:340px">Fill in your startup details and click Generate. Nova will draft every section investors expect.</p>
+                        </div>
+                        <div id="bpResult" style="display:none">
+                           <div class="d-flex align-items-center justify-content-between mb-3">
+                              <h5 class="mb-0" id="bpResultTitle">Business Plan</h5>
+                              <div class="d-flex gap-2">
+                                 <button class="boc btn py-2 px-3" style="font-size:.8rem" onclick="dbNav('decks',document.querySelector('[onclick*=decks]'))"><i class="fa-solid fa-chalkboard-user me-1"></i>Make Deck</button>
+                                 <button class="boc btn py-2 px-3" style="font-size:.8rem" onclick="exportPlan('pdf')"><i class="fa-solid fa-file-pdf me-1"></i>PDF</button>
+                                 <button class="boc btn py-2 px-3" style="font-size:.8rem" onclick="exportPlan('docx')"><i class="fa-solid fa-file-word me-1"></i>DOCX</button>
+                              </div>
+                           </div>
+                           <div class="nova-doc" id="bpSections"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- ============ PITCH DECKS ============ -->
+               <div class="db-section" id="sec-decks">
+                  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+                     <div>
+                        <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">AI Pitch Deck Generator</h4>
+                        <p style="font-size:.875rem;color:var(--tx3);margin:0">Generate a complete 10-slide investor pitch deck.</p>
+                     </div>
+                     <div class="d-flex gap-2">
+                        <select class="ninp mb-0" id="pdStartup" style="width:auto">
+                           <option>FlowHealth</option><option>Dabba Logistics</option><option>GridSense</option>
+                        </select>
+                        <button class="bgrd btn px-3 py-2" style="font-size:.85rem;white-space:nowrap" id="pdBtn" onclick="generateDeck()"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Generate Deck</button>
+                     </div>
+                  </div>
+                  <div id="pdEmpty" class="nova-panel text-center d-flex flex-column align-items-center justify-content-center" style="min-height:300px">
+                     <div class="qa-ico mb-2" style="background:rgba(245,158,11,.12);color:#fbbf24;width:64px;height:64px;font-size:1.5rem"><i class="fa-solid fa-chalkboard-user"></i></div>
+                     <h6 class="mb-1">No deck generated yet</h6>
+                     <p style="font-size:.85rem;color:var(--tx3);max-width:340px">Pick a startup and click Generate Deck. Nova builds all 10 investor slides for you.</p>
+                  </div>
+                  <div id="pdResult" class="row g-3" style="display:none"></div>
+               </div>
+               <!-- ============ READINESS ASSESSMENT ============ -->
+               <div class="db-section" id="sec-readiness">
+                  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+                     <div>
+                        <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">Startup Readiness Assessment</h4>
+                        <p style="font-size:.875rem;color:var(--tx3);margin:0">An honest, AI-driven evaluation of where your startup stands.</p>
+                     </div>
+                     <button class="bgrd btn px-3 py-2" style="font-size:.85rem" id="raBtn" onclick="runAssessment()"><i class="fa-solid fa-rotate me-2"></i>Re-run Assessment</button>
+                  </div>
+                  <!-- Score cards -->
+                  <div class="row g-3 mb-4">
+                     <div class="col-6 col-xl-3">
+                        <div class="db-stat-card">
+                           <div class="d-flex justify-content-between align-items-start mb-3">
+                              <div style="width:38px;height:38px;border-radius:11px;background:rgba(139,92,246,.15);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-lightbulb" style="color:#a78bfa"></i></div>
+                           </div>
+                           <div class="db-stat-val gt" data-ra="innovation">85</div>
+                           <div class="db-stat-lbl">Innovation Score</div>
+                           <div class="ra-bar mt-2"><span style="width:85%;background:var(--grad)"></span></div>
+                        </div>
+                     </div>
+                     <div class="col-6 col-xl-3">
+                        <div class="db-stat-card">
+                           <div class="d-flex justify-content-between align-items-start mb-3">
+                              <div style="width:38px;height:38px;border-radius:11px;background:rgba(96,165,250,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-arrow-up-right-dots" style="color:#60a5fa"></i></div>
+                           </div>
+                           <div class="db-stat-val" style="color:#60a5fa" data-ra="scalability">78</div>
+                           <div class="db-stat-lbl">Scalability Score</div>
+                           <div class="ra-bar mt-2"><span style="width:78%;background:#60a5fa"></span></div>
+                        </div>
+                     </div>
+                     <div class="col-6 col-xl-3">
+                        <div class="db-stat-card">
+                           <div class="d-flex justify-content-between align-items-start mb-3">
+                              <div style="width:38px;height:38px;border-radius:11px;background:rgba(52,211,153,.12);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-bullseye" style="color:#34d399"></i></div>
+                           </div>
+                           <div class="db-stat-val" style="color:#34d399" data-ra="market">80</div>
+                           <div class="db-stat-lbl">Market Score</div>
+                           <div class="ra-bar mt-2"><span style="width:80%;background:#34d399"></span></div>
+                        </div>
+                     </div>
+                     <div class="col-6 col-xl-3">
+                        <div class="db-stat-card">
+                           <div class="d-flex justify-content-between align-items-start mb-3">
+                              <div style="width:38px;height:38px;border-radius:11px;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-handshake" style="color:#fbbf24"></i></div>
+                           </div>
+                           <div class="db-stat-val" style="color:#fbbf24" data-ra="investment">74</div>
+                           <div class="db-stat-lbl">Investment Readiness</div>
+                           <div class="ra-bar mt-2"><span style="width:74%;background:#fbbf24"></span></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row g-3">
+                     <div class="col-lg-6">
+                        <div class="nova-panel h-100">
+                           <h6 class="mb-3"><i class="fa-solid fa-chart-pie me-2" style="color:var(--pur)"></i>Readiness Radar</h6>
+                           <canvas id="raChart" height="260"></canvas>
+                        </div>
+                     </div>
+                     <div class="col-lg-6">
+                        <div class="nova-panel h-100">
+                           <h6 class="mb-3"><i class="fa-solid fa-list-check me-2" style="color:#34d399"></i>AI Recommendations</h6>
+                           <div class="reco-item"><span class="reco-ico" style="background:rgba(245,158,11,.12);color:#fbbf24"><i class="fa-solid fa-triangle-exclamation"></i></span><div><strong>Strengthen your financial model</strong><p>Investment readiness is your lowest score. Add a 3-year projection and clear unit economics to your plan.</p></div></div>
+                           <div class="reco-item"><span class="reco-ico" style="background:rgba(96,165,250,.12);color:#60a5fa"><i class="fa-solid fa-users"></i></span><div><strong>Show traction evidence</strong><p>Add pilot results or a waitlist. Investors weight early validation heavily at seed stage.</p></div></div>
+                           <div class="reco-item"><span class="reco-ico" style="background:rgba(52,211,153,.12);color:#34d399"><i class="fa-solid fa-circle-check"></i></span><div><strong>Innovation is a strength</strong><p>Your differentiation is strong. Lead your pitch with it and protect it with IP where possible.</p></div></div>
+                           <button class="bgrd btn w-100 py-2 mt-2" onclick="dbNav('copilot',document.querySelector('[onclick*=copilot]'))"><i class="fa-solid fa-robot me-2"></i>Ask Copilot how to improve</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- ============ FUNDING ASSISTANT ============ -->
+               <div class="db-section" id="sec-funding">
+                  <div class="mb-4">
+                     <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">Funding Assistant</h4>
+                     <p style="font-size:.875rem;color:var(--tx3);margin:0">Funding opportunities, accelerators, and incubators matched to your startup.</p>
+                  </div>
+                  <!-- Filter pills -->
+                  <div class="d-flex gap-2 flex-wrap mb-4">
+                     <button class="filter-pill on" onclick="filterFunding('all',this)">All</button>
+                     <button class="filter-pill" onclick="filterFunding('accelerator',this)">Accelerators</button>
+                     <button class="filter-pill" onclick="filterFunding('incubator',this)">Incubators</button>
+                     <button class="filter-pill" onclick="filterFunding('grant',this)">Grants</button>
+                     <button class="filter-pill" onclick="filterFunding('vc',this)">VC &amp; Angels</button>
+                  </div>
+                  <div class="row g-3" id="fundingList"></div>
+               </div>
+               <!-- ============ VISA ASSISTANT ============ -->
+               <div class="db-section" id="sec-visa">
+                  <div class="mb-4">
+                     <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">Visa Assistant</h4>
+                     <p style="font-size:.875rem;color:var(--tx3);margin:0">Startup visa programs and recommended countries to launch and scale.</p>
+                  </div>
+                  <div class="row g-3 mb-4">
+                     <div class="col-12">
+                        <div class="nova-panel">
+                           <h6 class="mb-3"><i class="fa-solid fa-earth-americas me-2" style="color:var(--pur)"></i>Recommended Countries for Your Startup</h6>
+                           <div class="row g-3" id="visaCountries"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mb-2"><h6 style="font-size:1rem;font-weight:600"><i class="fa-solid fa-passport me-2" style="color:#34d399"></i>Startup Visa Programs</h6></div>
+                  <div class="row g-3" id="visaList"></div>
+               </div>
+               <!-- ============ AI COPILOT ============ -->
+               <div class="db-section" id="sec-copilot">
+                  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+                     <div>
+                        <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">AI Copilot</h4>
+                        <p style="font-size:.875rem;color:var(--tx3);margin:0">Your AI co-founder. Real-time answers with full project memory.</p>
+                     </div>
+                     <button class="boc btn py-2 px-3" style="font-size:.82rem" onclick="newConversation()"><i class="fa-solid fa-plus me-1"></i>New Chat</button>
+                  </div>
+                  <div class="copilot-grid">
+                     <!-- Conversation history -->
+                     <div class="conv-list nova-panel" style="padding:12px">
+                        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tx3);padding:6px 8px">History</div>
+                        <div id="convList"></div>
+                     </div>
+                     <!-- Chat -->
+                     <div class="chat-wrap" style="height:calc(100vh - 230px);min-height:460px">
+                        <div class="chat-header">
+                           <div class="chat-ai-avatar"><i class="fa-solid fa-robot"></i></div>
+                           <div style="flex:1">
+                              <div style="font-weight:600">Nova Copilot</div>
+                              <div class="chat-status"><span id="aiDot" style="width:7px;height:7px;border-radius:50%;background:#fbbf24;display:inline-block;margin-right:5px"></span><span id="aiStatusText">Demo mode &middot; add an API key in Settings</span></div>
+                           </div>
+                           <button class="boc btn py-2 px-3" style="font-size:.8rem" onclick="clearChat()"><i class="fa-solid fa-broom me-1"></i>Clear</button>
+                        </div>
+                        <div class="chat-body" id="chatBody">
+                           <div class="d-flex flex-column gap-1">
+                              <div class="msg msg-ai"><i class="fa-solid fa-rocket me-1" style="color:var(--pur)"></i> Hi! I'm Nova, your AI co-founder. I can help you shape your idea, write business plans and pitch decks, assess investor readiness, and find funding. What are you building?</div>
+                              <div class="msg-time" style="align-self:flex-start;padding-left:4px">Nova Copilot &middot; Just now</div>
+                           </div>
+                        </div>
+                        <div style="padding:0 16px">
+                           <div class="d-flex gap-2 flex-wrap pb-2" id="copilotPrompts">
+                              <button class="qprompt" onclick="quickMsg('I want to build a delivery startup in Morocco')">I want to build a delivery startup in Morocco</button>
+                              <button class="qprompt" onclick="quickMsg('Generate a SaaS business plan')">Generate a SaaS business plan</button>
+                              <button class="qprompt" onclick="quickMsg('Help me prepare for investors')">Help me prepare for investors</button>
+                              <button class="qprompt" onclick="quickMsg('Analyze my startup idea')">Analyze my startup idea</button>
+                           </div>
+                        </div>
+                        <div class="chat-input-wrap">
+                           <textarea class="chat-inp" id="chatInp" rows="1" placeholder="Ask Nova anything about your startup..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}"></textarea>
+                           <button class="chat-send" id="chatSendBtn" onclick="sendChat()" aria-label="Send"><i class="fa-solid fa-arrow-up"></i></button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- ============ DOCUMENTS CENTER ============ -->
+               <div class="db-section" id="sec-documents">
+                  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+                     <div>
+                        <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">Documents Center</h4>
+                        <p style="font-size:.875rem;color:var(--tx3);margin:0">Every business plan and pitch deck you've generated, in one library.</p>
+                     </div>
+                     <div class="d-flex gap-2">
+                        <button class="boc btn px-3 py-2" style="font-size:.85rem" onclick="dbNav('plans',document.querySelector('[onclick*=plans]'))"><i class="fa-solid fa-file-lines me-2"></i>New Plan</button>
+                        <button class="bgrd btn px-3 py-2" style="font-size:.85rem" onclick="dbNav('decks',document.querySelector('[onclick*=decks]'))"><i class="fa-solid fa-chalkboard-user me-2"></i>New Deck</button>
+                     </div>
+                  </div>
+                  <!-- Filter pills -->
+                  <div class="d-flex gap-2 flex-wrap mb-4">
+                     <button class="filter-pill on" onclick="filterDocuments('all',this)">All</button>
+                     <button class="filter-pill" onclick="filterDocuments('plan',this)">Business Plans</button>
+                     <button class="filter-pill" onclick="filterDocuments('deck',this)">Pitch Decks</button>
+                  </div>
+                  <!-- Empty state -->
+                  <div id="docsEmpty" class="nova-panel text-center d-flex flex-column align-items-center justify-content-center" style="min-height:300px">
+                     <div class="qa-ico mb-2" style="background:rgba(139,92,246,.12);color:#a78bfa;width:64px;height:64px;font-size:1.5rem"><i class="fa-solid fa-folder-open"></i></div>
+                     <h6 class="mb-1">No documents yet</h6>
+                     <p style="font-size:.85rem;color:var(--tx3);max-width:340px">Generate a business plan or pitch deck and it will be saved here automatically for quick access.</p>
+                  </div>
+                  <!-- Library grid -->
+                  <div class="row g-3" id="docsGrid" style="display:none"></div>
+               </div>
+               <!-- ============ BILLING & UPGRADES ============ -->
+               <div class="db-section" id="sec-billing">
+                  <div class="mb-4">
+                     <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">Billing &amp; Upgrades</h4>
+                     <p style="font-size:.875rem;color:var(--tx3);margin:0">Manage your subscription, payment history, and plan tier.</p>
+                  </div>
+                  <!-- Current plan -->
+                  <div class="row g-3 mb-4">
+                     <div class="col-lg-8">
+                        <div class="nova-panel h-100">
+                           <div class="d-flex align-items-start justify-content-between flex-wrap gap-3">
+                              <div>
+                                 <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3);margin-bottom:8px">Current Plan</div>
+                                 <h5 class="mb-1" id="billingPlanName">Pro Plan</h5>
+                                 <p style="font-size:.85rem;color:var(--tx2);margin:0">Unlimited plans &amp; decks, full readiness assessments, funding &amp; visa matching.</p>
+                              </div>
+                              <div class="text-end">
+                                 <div class="pamt"><sup>$</sup><span id="billingPlanPrice">39</span><span style="font-size:.9rem;color:var(--tx3)">/mo</span></div>
+                                 <span class="bst son" id="billingPlanStatus"><i class="fa-solid fa-circle-check me-1"></i>Active</span>
+                              </div>
+                           </div>
+                           <div class="d-flex align-items-center justify-content-between py-3 mt-3 border-top flex-wrap gap-2" style="border-color:var(--bd)!important">
+                              <div style="font-size:.82rem;color:var(--tx2)"><i class="fa-regular fa-calendar me-1" style="color:var(--pur)"></i>Next billing date: <strong id="billingNextDate">July 1, 2026</strong></div>
+                              <div class="d-flex gap-2">
+                                 <button class="boc btn py-2 px-3" style="font-size:.82rem" onclick="dbNav('billing',document.querySelector('[onclick*=billing]'));document.getElementById('billingUpgradeGrid').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-arrow-up me-1"></i>Change Plan</button>
+                                 <button class="boc btn py-2 px-3" style="font-size:.82rem;color:#f87171;border-color:rgba(248,113,113,.3)" onclick="cancelPlan()"><i class="fa-solid fa-ban me-1"></i>Cancel</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="nova-panel h-100">
+                           <h6 class="mb-3"><i class="fa-solid fa-wallet me-2" style="color:var(--pur)"></i>Payment Method</h6>
+                           <div class="d-flex align-items-center gap-3 p-3" style="background:var(--bg3);border:1px solid var(--bd);border-radius:12px">
+                              <i class="fa-brands fa-cc-visa fa-2x" style="color:#60a5fa"></i>
+                              <div>
+                                 <div style="font-size:.85rem;font-weight:600">Visa ending 4242</div>
+                                 <div style="font-size:.76rem;color:var(--tx3)">Expires 08/28</div>
+                              </div>
+                           </div>
+                           <button class="boc btn w-100 py-2 mt-3" style="font-size:.82rem" onclick="novaToast('Payment method update is backend-driven (coming soon).')"><i class="fa-solid fa-pen me-1"></i>Update Payment Method</button>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Payment history -->
+                  <div class="nova-panel mb-4">
+                     <h6 class="mb-3"><i class="fa-solid fa-receipt me-2" style="color:#60a5fa"></i>Payment History</h6>
+                     <div style="overflow:auto"><table class="nova-table" id="billingHistoryTable"></table></div>
+                  </div>
+                  <!-- Upgrade grid -->
+                  <div class="mb-3"><h6 style="font-size:1rem;font-weight:600"><i class="fa-solid fa-layer-group me-2" style="color:var(--pur)"></i>Available Plans</h6></div>
+                  <div class="row g-3" id="billingUpgradeGrid"></div>
+               </div>
+               <!-- ============ SETTINGS ============ -->
+               <div class="db-section" id="sec-settings">
+                  <div class="mb-4">
+                     <h4 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">Settings</h4>
+                     <p style="font-size:.875rem;color:var(--tx3);margin:0">Manage your profile, preferences, and account.</p>
+                  </div>
+                  <div class="row g-3">
+                     <div class="col-lg-4">
+                        <div class="nova-panel text-center">
+                           <div class="db-avatar mx-auto" id="settingsAvatar" style="width:72px;height:72px;border-radius:20px;font-size:1.6rem">U</div>
+                           <h6 class="mt-3 mb-0" id="settingsName">User</h6>
+                           <p style="font-size:.82rem;color:var(--tx3)" id="settingsEmail">user@email.com</p>
+                           <span class="bst son">Pro Plan</span>
+                        </div>
+                     </div>
+                     <div class="col-lg-8">
+                        <div class="nova-panel">
+                           <h6 class="mb-3"><i class="fa-regular fa-user me-2" style="color:var(--pur)"></i>Profile</h6>
+                           <div class="row g-3">
+                              <div class="col-md-6"><label class="nlbl" for="profileName">Full Name</label><input class="ninp" id="profileName" value="User"></div>
+                              <div class="col-md-6"><label class="nlbl" for="profileEmail">Email</label><input class="ninp" id="profileEmail" value="user@email.com"></div>
+                              <div class="col-md-6"><label class="nlbl" for="profileCompany">Startup / Company</label><input class="ninp" id="profileCompany" placeholder="Your startup name"></div>
+                              <div class="col-md-6"><label class="nlbl" for="profileCountry">Country</label><input class="ninp" id="profileCountry" placeholder="e.g. Morocco"></div>
+                           </div>
+                           <button class="bgrd btn py-2 px-4 mt-3" onclick="saveSettings(event)"><i class="fa-solid fa-floppy-disk me-2"></i>Save Changes</button>
+                        </div>
+                        <div class="nova-panel mt-3">
+                           <h6 class="mb-1"><i class="fa-solid fa-robot me-2" style="color:var(--pur)"></i>AI Engine (OpenRouter)</h6>
+                           <p style="font-size:.8rem;color:var(--tx3);margin-bottom:14px">Connect your OpenRouter key for a real AI Copilot. Leave empty to stay in Demo Mode. Your key is stored only in this browser.</p>
+                           <div class="row g-3">
+                              <div class="col-md-7">
+                                 <label class="nlbl" for="setApiKey">OpenRouter API Key</label>
+                                 <input class="ninp" id="setApiKey" type="password" placeholder="sk-or-v1-..." autocomplete="off">
+                              </div>
+                              <div class="col-md-5">
+                                 <label class="nlbl" for="setModel">Model</label>
+                                 <select class="ninp" id="setModel"></select>
+                              </div>
+                           </div>
+                           <div class="d-flex align-items-center justify-content-between py-3 mt-2 border-top" style="border-color:var(--bd)!important">
+                              <div><div class="fw-semibold" style="font-size:.9rem">Demo Mode</div><div style="font-size:.78rem;color:var(--tx3)">Use built-in offline AI responses (no key needed)</div></div>
+                              <label class="nova-switch"><input type="checkbox" id="setDemoMode" checked onchange="onDemoToggle()"><span></span></label>
+                           </div>
+                           <div class="d-flex gap-2">
+                              <button class="bgrd btn py-2 px-4" onclick="saveAISettings(event)"><i class="fa-solid fa-plug-circle-check me-2"></i>Save &amp; Connect</button>
+                              <button class="boc btn py-2 px-3" onclick="testAI(event)"><i class="fa-solid fa-vial me-2"></i>Test</button>
+                           </div>
+                           <div id="aiTestResult" style="font-size:.82rem;margin-top:10px"></div>
+                        </div>
+                        <div class="nova-panel mt-3">
+                           <h6 class="mb-3"><i class="fa-solid fa-database me-2" style="color:#60a5fa"></i>Data &amp; Demo</h6>
+                           <div class="d-flex gap-2 flex-wrap">
+                              <button class="boc btn py-2 px-3" onclick="loadDemoData()"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Load Demo Data</button>
+                              <button class="boc btn py-2 px-3" onclick="exportData()"><i class="fa-solid fa-download me-2"></i>Export My Data (JSON)</button>
+                              <button class="boc btn py-2 px-3" style="color:#f87171;border-color:rgba(248,113,113,.3)" onclick="resetData()"><i class="fa-solid fa-trash me-2"></i>Reset Everything</button>
+                           </div>
+                        </div>
+                        <div class="nova-panel mt-3">
+                           <h6 class="mb-3"><i class="fa-solid fa-sliders me-2" style="color:#60a5fa"></i>Preferences</h6>
+                           <div class="d-flex align-items-center justify-content-between py-2">
+                              <div><div class="fw-semibold" style="font-size:.9rem">Dark Mode</div><div style="font-size:.78rem;color:var(--tx3)">Switch between light and dark themes</div></div>
+                              <label class="nova-switch"><input type="checkbox" id="darkModeToggle" checked onchange="toggleTheme()"><span></span></label>
+                           </div>
+                           <div class="d-flex align-items-center justify-content-between py-2 border-top" style="border-color:var(--bd)!important">
+                              <div><div class="fw-semibold" style="font-size:.9rem">Email Notifications</div><div style="font-size:.78rem;color:var(--tx3)">Funding matches and document updates</div></div>
+                              <label class="nova-switch"><input type="checkbox" checked><span></span></label>
+                           </div>
+                           <div class="d-flex align-items-center justify-content-between py-2 border-top" style="border-color:var(--bd)!important">
+                              <div><div class="fw-semibold" style="font-size:.9rem">Weekly Readiness Report</div><div style="font-size:.78rem;color:var(--tx3)">Get a summary of your startup score every week</div></div>
+                              <label class="nova-switch"><input type="checkbox"><span></span></label>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- /dashboard -->
+
+      <!-- ======================== MODALS ======================== -->
+      <!-- Onboarding -->
+      <div class="modal fade" id="onboardModal" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content nova-modal">
+               <div class="modal-body p-4">
+                  <div class="d-flex align-items-center gap-2 mb-3">
+                     <div class="logo-i"><i class="fa-solid fa-rocket"></i></div>
+                     <h5 class="mb-0">Welcome to Nova StartupOS AI</h5>
+                  </div>
+                  <div class="onb-progress mb-1"><span id="onbProgress" style="width:33%"></span></div>
+                  <div style="font-size:.76rem;color:var(--tx3);margin-bottom:18px" id="onbStepLabel">Step 1 of 3</div>
+                  <!-- Pane 1 -->
+                  <div id="onbPane1">
+                     <h6 class="mb-1">Let's set you up</h6>
+                     <p style="font-size:.85rem;color:var(--tx3)">First, tell us a bit about you.</p>
+                     <label class="nlbl" for="onbName">Your name</label>
+                     <input class="ninp" id="onbName" placeholder="Jane Founder">
+                     <label class="nlbl" for="onbRole">I am a...</label>
+                     <select class="ninp" id="onbRole"><option>Solo founder</option><option>Co-founder</option><option>Aspiring founder</option><option>Startup team member</option></select>
+                  </div>
+                  <!-- Pane 2 -->
+                  <div id="onbPane2" style="display:none">
+                     <h6 class="mb-1">Create your workspace</h6>
+                     <p style="font-size:.85rem;color:var(--tx3)">A workspace holds all your startups, documents, and chats.</p>
+                     <label class="nlbl" for="onbWorkspace">Workspace name</label>
+                     <input class="ninp" id="onbWorkspace" placeholder="e.g. Jane's Ventures">
+                     <label class="nlbl" for="onbCountry">Where are you based?</label>
+                     <input class="ninp" id="onbCountry" placeholder="e.g. Lithuania">
+                  </div>
+                  <!-- Pane 3 -->
+                  <div id="onbPane3" style="display:none">
+                     <h6 class="mb-1">You're all set <i class="fa-solid fa-circle-check" style="color:#34d399"></i></h6>
+                     <p style="font-size:.85rem;color:var(--tx3)">Review and launch your founder dashboard.</p>
+                     <div class="nova-panel" style="padding:14px">
+                        <div class="d-flex justify-content-between py-1" style="font-size:.85rem"><span style="color:var(--tx3)">Name</span><strong id="onbSummaryName">—</strong></div>
+                        <div class="d-flex justify-content-between py-1" style="font-size:.85rem"><span style="color:var(--tx3)">Workspace</span><strong id="onbSummaryWs">—</strong></div>
+                        <div class="d-flex justify-content-between py-1" style="font-size:.85rem"><span style="color:var(--tx3)">Country</span><strong id="onbSummaryCountry">—</strong></div>
+                     </div>
+                     <p style="font-size:.8rem;color:var(--tx3);margin-top:12px">Next we'll help you create your first startup with the AI wizard.</p>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                     <button class="boc btn py-2 px-3" id="onbBackBtn" style="display:none" onclick="NovaWizard.onbBack()"><i class="fa-solid fa-arrow-left me-1"></i>Back</button>
+                     <div class="ms-auto d-flex gap-2">
+                        <button class="bgrd btn py-2 px-4" id="onbNextBtn" onclick="NovaWizard.onbNext()">Continue <i class="fa-solid fa-arrow-right ms-1 fa-sm"></i></button>
+                        <button class="bgrd btn py-2 px-4" id="onbFinishBtn" style="display:none" onclick="NovaWizard.onbFinish()">Launch Dashboard <i class="fa-solid fa-rocket ms-1 fa-sm"></i></button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Startup creation wizard -->
+      <div class="modal fade" id="wizardModal" tabindex="-1" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content nova-modal">
+               <div class="modal-body p-4">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                     <h5 class="mb-0"><i class="fa-solid fa-wand-magic-sparkles me-2" style="color:var(--pur)"></i>New Startup</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(1)"></button>
+                  </div>
+                  <div id="wzDots" class="d-flex gap-2 mb-2"><span class="wz-dot on"></span><span class="wz-dot"></span><span class="wz-dot"></span><span class="wz-dot"></span></div>
+                  <div style="font-size:.76rem;color:var(--tx3);margin-bottom:18px" id="wzStepLabel">Step 1 of 4</div>
+                  <div class="onb-progress mb-3" style="display:none"><span id="wzProgress"></span></div>
+                  <!-- Step 1 -->
+                  <div id="wzPane1">
+                     <h6 class="mb-3">The basics</h6>
+                     <label class="nlbl" for="wzName">Startup name</label>
+                     <input class="ninp" id="wzName" placeholder="e.g. FlowHealth">
+                     <div class="row g-3">
+                        <div class="col-md-6"><label class="nlbl" for="wzIndustry">Industry</label>
+                           <select class="ninp" id="wzIndustry"><option>SaaS</option><option>HealthTech</option><option>FinTech</option><option>E-commerce</option><option>CleanTech</option><option>Logistics</option><option>EdTech</option><option>AI / ML</option><option>Other</option></select></div>
+                        <div class="col-md-6"><label class="nlbl" for="wzStage">Stage</label>
+                           <select class="ninp" id="wzStage"><option>Idea</option><option>MVP</option><option>Early Stage</option><option>Growth</option><option>Scale</option></select></div>
+                     </div>
+                     <label class="nlbl" for="wzLogo">Startup Logo <span style="color:var(--tx3);font-weight:400">(optional)</span></label>
+                     <div class="d-flex align-items-center gap-3">
+                        <div id="wzLogoPreview" style="width:56px;height:56px;border-radius:14px;background:var(--bg3);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden">
+                           <i class="fa-solid fa-image" style="color:var(--tx3)"></i>
+                        </div>
+                        <label class="boc btn py-2 px-3" style="font-size:.82rem;cursor:pointer;margin:0">
+                           <i class="fa-solid fa-upload me-1"></i>Upload Logo
+                           <input type="file" id="wzLogo" accept="image/*" style="display:none" onchange="previewWizardLogo(this)">
+                        </label>
+                     </div>
+                  </div>
+                  <!-- Step 2 -->
+                  <div id="wzPane2" style="display:none">
+                     <h6 class="mb-3">Market</h6>
+                     <label class="nlbl" for="wzCountry">Country / region</label>
+                     <input class="ninp" id="wzCountry" placeholder="e.g. Lithuania / Baltics">
+                     <label class="nlbl" for="wzMarket">Target market</label>
+                     <input class="ninp" id="wzMarket" placeholder="Who are your customers?">
+                  </div>
+                  <!-- Step 3 -->
+                  <div id="wzPane3" style="display:none">
+                     <h6 class="mb-3">Problem &amp; solution</h6>
+                     <label class="nlbl" for="wzProblem">Problem</label>
+                     <textarea class="ninp" id="wzProblem" rows="2" placeholder="What problem do you solve?"></textarea>
+                     <label class="nlbl" for="wzSolution">Solution</label>
+                     <textarea class="ninp" id="wzSolution" rows="2" placeholder="How do you solve it?"></textarea>
+                  </div>
+                  <!-- Step 4 -->
+                  <div id="wzPane4" style="display:none">
+                     <h6 class="mb-3">Review</h6>
+                     <div class="nova-panel" style="padding:14px">
+                        <div class="d-flex justify-content-between py-1" style="font-size:.85rem"><span style="color:var(--tx3)">Name</span><strong id="wzSumName">—</strong></div>
+                        <div class="d-flex justify-content-between py-1" style="font-size:.85rem"><span style="color:var(--tx3)">Industry</span><strong id="wzSumIndustry">—</strong></div>
+                        <div class="d-flex justify-content-between py-1" style="font-size:.85rem"><span style="color:var(--tx3)">Country</span><strong id="wzSumCountry">—</strong></div>
+                        <div class="d-flex justify-content-between py-1" style="font-size:.85rem"><span style="color:var(--tx3)">Problem</span><strong id="wzSumProblem" style="max-width:60%;text-align:right">—</strong></div>
+                     </div>
+                     <p style="font-size:.8rem;color:var(--tx3);margin-top:12px">Nova will save this startup and remember these facts in every Copilot chat.</p>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                     <button class="boc btn py-2 px-3" id="wzBackBtn" style="display:none" onclick="NovaWizard.wzBack()"><i class="fa-solid fa-arrow-left me-1"></i>Back</button>
+                     <div class="ms-auto d-flex gap-2">
+                        <button class="bgrd btn py-2 px-4" id="wzNextBtn" onclick="NovaWizard.wzNext()">Continue <i class="fa-solid fa-arrow-right ms-1 fa-sm"></i></button>
+                        <button class="bgrd btn py-2 px-4" id="wzFinishBtn" style="display:none" onclick="NovaWizard.wzFinish()">Create Startup <i class="fa-solid fa-check ms-1 fa-sm"></i></button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Toast -->
+      <div id="novaToastBox" class="nova-toast"></div>
+
+      <!-- ======================== ADMIN CRUD MODAL (generic) ======================== -->
+      <div class="modal fade" id="adminCrudModal" tabindex="-1" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content nova-modal">
+               <div class="modal-body p-4">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                     <h5 class="mb-0" id="adminCrudTitle"><i class="fa-solid fa-pen-ruler me-2" style="color:var(--pur)"></i>Edit Record</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(1)"></button>
+                  </div>
+                  <form id="adminCrudForm" onsubmit="NovaAdmin.submitCrud(event)">
+                     <div id="adminCrudFields"></div>
+                     <div class="d-flex justify-content-end gap-2 mt-4">
+                        <button type="button" class="boc btn py-2 px-3" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="bgrd btn py-2 px-4"><i class="fa-solid fa-floppy-disk me-1"></i>Save</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ======================== SUPPORT TICKET RESPONSE MODAL ======================== -->
+      <div class="modal fade" id="ticketModal" tabindex="-1" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content nova-modal">
+               <div class="modal-body p-4">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                     <h5 class="mb-0"><i class="fa-solid fa-headset me-2" style="color:var(--pur)"></i>Ticket <span id="ticketModalId" style="color:var(--tx3)"></span></h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(1)"></button>
+                  </div>
+                  <div class="nova-panel mb-3" style="padding:14px">
+                     <div class="d-flex justify-content-between flex-wrap gap-2 mb-2" style="font-size:.82rem">
+                        <span><strong id="ticketModalUser">—</strong></span>
+                        <span style="color:var(--tx3)" id="ticketModalDate">—</span>
+                     </div>
+                     <div style="font-weight:600;font-size:.92rem;margin-bottom:6px" id="ticketModalSubject">—</div>
+                     <p style="font-size:.85rem;color:var(--tx2);margin:0" id="ticketModalBody">—</p>
+                  </div>
+                  <label class="nlbl" for="ticketReply">Your Response</label>
+                  <textarea class="ninp" id="ticketReply" rows="4" placeholder="Type your reply to the customer..."></textarea>
+                  <div class="d-flex align-items-center justify-content-between mt-4 flex-wrap gap-2">
+                     <label class="d-flex align-items-center gap-2" style="font-size:.82rem;color:var(--tx2);cursor:pointer">
+                        <input type="checkbox" id="ticketCloseOnReply"> Mark as Closed on send
+                     </label>
+                     <div class="d-flex gap-2">
+                        <button type="button" class="boc btn py-2 px-3" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="bgrd btn py-2 px-4" onclick="NovaAdmin.sendTicketReply()"><i class="fa-solid fa-paper-plane me-1"></i>Send Reply</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ======================== SCRIPTS ======================== -->
+      <script src="js/jquery-3.7.1.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/aos.js"></script>
+      <script src="js/jquery.magnific-popup.min.js"></script>
+      <script src="js/chart.umd.min.js"></script>
+      <script src="js/api.js"></script>
+      <script src="js/store.js"></script>
+      <script src="js/ai.js"></script>
+      <script src="js/export.js"></script>
+      <script src="js/wizard.js"></script>
+      <script src="js/admin.js"></script>
+      <script src="js/main.js"></script>
+   </body>
+</html>

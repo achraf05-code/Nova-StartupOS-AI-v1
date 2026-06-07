@@ -1,0 +1,569 @@
+/* =====================================================================
+   Nova StartupOS AI - Component layer
+   Extends the shared design system (style.css). Reuses CSS variables:
+   --bg --bg2 --bg3 --sf --bd --bd2 --tx --tx2 --tx3 --pur --blu --grad
+   ===================================================================== */
+
+/* ---- Logo mark ---- */
+.logo-i {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: var(--grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* ---- Generic panel (reusable surface) ---- */
+.nova-panel {
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 18px;
+  padding: 22px;
+}
+
+/* ---- Form controls ---- */
+.nlbl {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tx2);
+  margin: 12px 0 6px;
+}
+.ninp {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg3);
+  border: 1px solid var(--bd2);
+  border-radius: 11px;
+  color: var(--tx);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: 0.2s;
+  resize: vertical;
+}
+.ninp:focus {
+  border-color: var(--pur);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+select.ninp {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236b6b8a'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+/* ---- Quick action cards (dashboard home) ---- */
+.quick-action {
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 16px;
+  padding: 18px;
+  transition: 0.25s;
+  cursor: pointer;
+  display: block;
+}
+.quick-action:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+}
+.qa-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+/* ---- Startup score ring ---- */
+.score-ring {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #8b5cf6 calc(var(--val) * 1%),
+    var(--bg3) 0
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.score-ring-inner {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: var(--sf);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Readiness bars ---- */
+.ra-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--bg3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.ra-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.6s ease;
+}
+
+/* ---- Recommendation item ---- */
+.reco-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--bd);
+}
+.reco-item:first-of-type {
+  border-top: none;
+}
+.reco-ico {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+}
+.reco-item strong {
+  font-size: 0.88rem;
+  display: block;
+  margin-bottom: 2px;
+}
+.reco-item p {
+  font-size: 0.8rem;
+  color: var(--tx2);
+  margin: 0;
+}
+
+/* ---- Generated business plan document ---- */
+.nova-doc {
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 18px;
+  padding: 28px;
+}
+.nova-doc .doc-section {
+  padding: 18px 0;
+  border-top: 1px solid var(--bd);
+}
+.nova-doc .doc-section:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.nova-doc h6 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nova-doc p {
+  font-size: 0.875rem;
+  color: var(--tx2);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.nova-doc ul {
+  font-size: 0.875rem;
+  color: var(--tx2);
+  line-height: 1.7;
+  padding-left: 18px;
+  margin-bottom: 0;
+}
+/* SWOT grid */
+.swot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.swot-box {
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid var(--bd);
+}
+.swot-box h6 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.swot-box ul {
+  padding-left: 16px;
+}
+.swot-box li {
+  font-size: 0.82rem;
+}
+
+/* ---- Pitch deck slide cards ---- */
+.deck-slide {
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 16px;
+  padding: 20px;
+  height: 100%;
+  position: relative;
+  transition: 0.25s;
+}
+.deck-slide:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-3px);
+}
+.deck-slide .slide-num {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--tx3);
+  background: var(--bg3);
+  border-radius: 8px;
+  padding: 2px 9px;
+}
+.deck-slide .slide-ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(139, 92, 246, 0.14);
+  color: #a78bfa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.deck-slide h6 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.deck-slide p {
+  font-size: 0.82rem;
+  color: var(--tx2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---- Funding / Visa cards ---- */
+.fund-card {
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 16px;
+  padding: 18px;
+  height: 100%;
+  transition: 0.25s;
+}
+.fund-card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-3px);
+}
+.fund-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.fund-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 100px;
+  background: var(--bg3);
+  color: var(--tx2);
+}
+.match-bar {
+  height: 6px;
+  background: var(--bg3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.match-bar span {
+  display: block;
+  height: 100%;
+  background: var(--grad);
+  border-radius: 100px;
+}
+
+/* ---- Filter pills ---- */
+.filter-pill {
+  background: var(--sf);
+  border: 1px solid var(--bd2);
+  color: var(--tx2);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.filter-pill:hover {
+  border-color: var(--pur);
+  color: var(--tx);
+}
+.filter-pill.on {
+  background: var(--grad);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ---- Copilot suggested prompts ---- */
+.qprompt {
+  background: var(--bg3);
+  border: 1px solid var(--bd);
+  color: var(--tx2);
+  font-size: 0.8rem;
+  padding: 7px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.qprompt:hover {
+  border-color: var(--pur);
+  color: var(--tx);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* ---- Toggle switch ---- */
+.nova-switch {
+  position: relative;
+  width: 46px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.nova-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.nova-switch span {
+  position: absolute;
+  inset: 0;
+  background: var(--bg3);
+  border: 1px solid var(--bd2);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.nova-switch span::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: var(--tx3);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.nova-switch input:checked + span {
+  background: var(--grad);
+  border-color: transparent;
+}
+.nova-switch input:checked + span::before {
+  transform: translateX(20px);
+  background: #fff;
+}
+
+/* ---- Accessibility: focus visibility ---- */
+button:focus-visible,
+a:focus-visible,
+.ninp:focus-visible,
+.quick-action:focus-visible,
+.db-nl:focus-visible {
+  outline: 2px solid var(--pur);
+  outline-offset: 2px;
+}
+
+/* ---- Print: investor-ready export ---- */
+@media print {
+  #dbSidebar,
+  .db-top,
+  #notifWrap,
+  #profileWrap {
+    display: none !important;
+  }
+  .db-main {
+    margin-left: 0 !important;
+    padding-top: 0 !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
+/* ---- Responsive polish ---- */
+@media (max-width: 575px) {
+  .nova-panel {
+    padding: 16px;
+  }
+  .swot-grid {
+    grid-template-columns: 1fr;
+  }
+  .score-ring {
+    width: 116px;
+    height: 116px;
+  }
+  .score-ring-inner {
+    width: 92px;
+    height: 92px;
+  }
+}
+
+/* =====================================================================
+   Nova v2 - Workspace, Copilot history, Wizard, Modals, Toast
+   ===================================================================== */
+
+/* ---- Workspace switcher (sidebar top) ---- */
+.ws-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 12px 8px;
+  padding: 10px 12px;
+  background: var(--bg3);
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s;
+}
+.ws-switcher:hover { border-color: rgba(139, 92, 246, 0.35); }
+.ws-ico {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: var(--grad); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.85rem;
+}
+.ws-name {
+  font-size: 0.85rem; font-weight: 600; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.ws-menu {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  background: var(--sf); border: 1px solid var(--bd2);
+  border-radius: 12px; padding: 6px; z-index: 60;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  display: none;
+}
+.ws-menu.open { display: block; }
+.ws-menu button {
+  width: 100%; text-align: left; background: none; border: none;
+  color: var(--tx2); font-size: 0.84rem; padding: 8px 10px;
+  border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+}
+.ws-menu button:hover { background: rgba(139, 92, 246, 0.12); color: var(--tx); }
+
+/* ---- Copilot two-pane layout ---- */
+.copilot-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+}
+.conv-list { height: calc(100vh - 230px); min-height: 460px; overflow-y: auto; }
+.conv-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 10px; border-radius: 10px; cursor: pointer;
+  font-size: 0.82rem; color: var(--tx2); transition: 0.15s;
+}
+.conv-item:hover { background: rgba(139, 92, 246, 0.1); color: var(--tx); }
+.conv-item.on { background: rgba(139, 92, 246, 0.16); color: #a78bfa; font-weight: 600; }
+.conv-item .conv-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conv-item .conv-del { opacity: 0; color: var(--tx3); border: none; background: none; cursor: pointer; }
+.conv-item:hover .conv-del { opacity: 1; }
+.conv-empty { font-size: 0.8rem; color: var(--tx3); padding: 12px 10px; text-align: center; }
+@media (max-width: 860px) {
+  .copilot-grid { grid-template-columns: 1fr; }
+  .conv-list { height: auto; min-height: 0; max-height: 180px; }
+}
+
+/* ---- Modal styling ---- */
+.nova-modal {
+  background: var(--sf);
+  border: 1px solid var(--bd2);
+  border-radius: 20px;
+  color: var(--tx);
+}
+.onb-progress, .onb-progress > span { height: 6px; border-radius: 100px; }
+.onb-progress { width: 100%; background: var(--bg3); overflow: hidden; }
+.onb-progress > span { display: block; background: var(--grad); transition: width 0.4s ease; }
+
+/* ---- Wizard step dots ---- */
+.wz-dot {
+  flex: 1; height: 5px; border-radius: 100px; background: var(--bg3);
+  transition: 0.3s;
+}
+.wz-dot.on { background: var(--grad); }
+.ninp.is-invalid { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15); }
+
+/* ---- Toast ---- */
+.nova-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--sf); border: 1px solid var(--bd2); color: var(--tx);
+  padding: 12px 18px; border-radius: 12px; font-size: 0.85rem;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35); z-index: 3000;
+  opacity: 0; pointer-events: none; transition: 0.3s; max-width: 90vw;
+}
+.nova-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---- Streaming caret ---- */
+.stream-caret::after {
+  content: "▋"; color: var(--pur); animation: blink 1s steps(2) infinite; margin-left: 1px;
+}
+@keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+
+/* =====================================================================
+   Nova v3 - Admin tables (reuses dasher table patterns, Nova-styled)
+   ===================================================================== */
+.nova-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.nova-table thead th {
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tx3);
+  font-weight: 700;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--bd2);
+  white-space: nowrap;
+}
+.nova-table tbody td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--bd);
+  color: var(--tx2);
+  vertical-align: middle;
+}
+.nova-table tbody tr:hover {
+  background: rgba(139, 92, 246, 0.05);
+}
+.nova-table tbody tr:last-child td {
+  border-bottom: none;
+}

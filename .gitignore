@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Dependencies (none required — pure static site)
+node_modules/
+
+# Vercel
+.vercel/
+
+# Local env / secrets — never commit real keys
+.env
+.env.*
+*.local
+
+# Editor folders
+.vscode/
+.idea/
