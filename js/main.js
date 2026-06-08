@@ -251,6 +251,12 @@ async function loadBackendConversation(id) {
 function doLogout() {
   currentUser = null; chatHistory = []; NOVA_BACKEND = false;
   if (window.NovaApi) NovaApi.logout();
+  // Reset RBAC state so the next session starts clean.
+  const sidebar = document.getElementById('dbSidebar');
+  if (sidebar) {
+    sidebar.setAttribute('data-role', 'user');
+    sidebar.setAttribute('data-context', 'workspace');
+  }
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('landing').style.display = 'block';
   window.scrollTo(0, 0);
@@ -258,6 +264,11 @@ function doLogout() {
 // Native layout teardown after a session ends.
 function logoutSuccess() {
   currentUser = null; chatHistory = []; NOVA_BACKEND = false;
+  const sidebar = document.getElementById('dbSidebar');
+  if (sidebar) {
+    sidebar.setAttribute('data-role', 'user');
+    sidebar.setAttribute('data-context', 'workspace');
+  }
   const dash = document.getElementById('dashboard');
   const land = document.getElementById('landing');
   if (dash) dash.style.display = 'none';
@@ -267,6 +278,16 @@ function logoutSuccess() {
 
 /* ----------------------- DASHBOARD NAVIGATION -------------------- */
 function dbNav(section, btn) {
+  // ---- Defense in depth: prevent privileged routing for non-admins ---
+  // The sidebar already hides admin/super-admin entries via CSS, but this
+  // also blocks console-driven navigation (e.g. dbNav('s-ai') typed by a
+  // regular user). Server-side RLS still has the final say.
+  if (typeof section === 'string') {
+    const sidebar = document.getElementById('dbSidebar');
+    const r = sidebar ? sidebar.getAttribute('data-role') : 'user';
+    if (section.indexOf('s-') === 0 && r !== 'super_admin') return;
+    if (section.indexOf('a-') === 0 && r !== 'admin' && r !== 'super_admin') return;
+  }
   document.querySelectorAll('.db-nl').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.db-section').forEach(s => s.classList.remove('active'));
   if (btn) btn.classList.add('active');

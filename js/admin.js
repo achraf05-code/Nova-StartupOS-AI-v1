@@ -10,62 +10,126 @@
   let role = { admin: false, superAdmin: false };
 
   /* ---------------------------------------------------------------- */
+  // Canonical role detection — accepts every variant the app has used
+  // historically ('Super Admin', 'super_admin', is_super_admin, etc).
+  function detectRole(user) {
+    if (!user) return 'user';
+    const raw = String(user.role || (user.roles && user.roles[0]) || '').toLowerCase().replace(/\s+/g, '_');
+    if (raw === 'super_admin' || user.is_super_admin === true) return 'super_admin';
+    if (raw === 'admin'       || user.is_admin === true)       return 'admin';
+    return 'user';
+  }
+
+  /**
+   * Apply RBAC to the dashboard sidebar.
+   *
+   * Single source of truth — driven by `user.role`. The sidebar exposes
+   * `data-role` and `data-context` attributes; CSS handles visibility,
+   * so there's never a flash of admin/super-admin items for a regular
+   * user during JS boot.
+   *
+   * Roles:
+   *   - 'user'        → only #userNavGroup (My Workspace + AI modules)
+   *   - 'admin'       → #adminNavGroup, plus a context switcher to flip
+   *                     into the personal Workspace view without polluting
+   *                     the admin sidebar
+   *   - 'super_admin' → #adminNavGroup AND #superAdminNavGroup, plus the
+   *                     same context switcher
+   */
   function applyRole(user) {
-    role.admin = !!(user && (user.is_admin || user.is_super_admin));
-    role.superAdmin = !!(user && user.is_super_admin);
+    const detected = detectRole(user);
+    role.admin      = detected === 'admin' || detected === 'super_admin';
+    role.superAdmin = detected === 'super_admin';
+
+    const sidebar = document.getElementById('dbSidebar');
+    if (!sidebar) return;
+
+    // Stamp the role + context. CSS does the rest of the work.
+    sidebar.setAttribute('data-role', detected);
+    // Default landing context: admins/super-admins start in the admin
+    // workflow; users always live in the workspace.
+    const startCtx = (detected === 'user') ? 'workspace' : 'admin';
+    sidebar.setAttribute('data-context', startCtx);
+
+    // Build privileged nav groups (idempotent — buildNav is a no-op once
+    // the groups already exist, with their visibility re-synced).
     buildNav();
     buildSections();
-    // Role-based landing: super_admin -> super admin area, admin -> admin area, user -> dashboard.
+    syncContextButton(startCtx);
+
+    // Choose the landing section for this role.
     if (typeof global.dbNav === 'function') {
       setTimeout(function () {
-        if (role.superAdmin) global.dbNav('s-ai');
-        else if (role.admin) global.dbNav('a-overview');
-        // regular users stay on the default 'overview' dashboard
-      }, 350);
+        if (detected === 'super_admin') global.dbNav('s-ai');
+        else if (detected === 'admin')  global.dbNav('a-overview');
+        else                            global.dbNav('overview');
+      }, 250);
     }
   }
 
-  /* ---- Sidebar nav injection ---- */
+  // Public hook so the user-context switcher can flip between the admin
+  // sidebar and the personal "My Workspace" sidebar without reloading.
+  function setContext(ctx) {
+    const sidebar = document.getElementById('dbSidebar');
+    if (!sidebar) return;
+    const safe = (ctx === 'workspace') ? 'workspace' : 'admin';
+    sidebar.setAttribute('data-context', safe);
+    syncContextButton(safe);
+    if (typeof global.dbNav === 'function') {
+      // Land on a sensible default section in the new context.
+      if (safe === 'workspace') global.dbNav('overview');
+      else if (role.superAdmin) global.dbNav('s-ai');
+      else if (role.admin)      global.dbNav('a-overview');
+    }
+  }
+  function syncContextButton(ctx) {
+    document.querySelectorAll('#navContextSwitcher .nav-ctx-btn').forEach(function (btn) {
+      btn.classList.toggle('on', btn.getAttribute('data-ctx') === ctx);
+    });
+  }
+  // Window-scoped helper used by the inline onclick on the switcher
+  // (kept here so the wiring is co-located with the rest of the RBAC).
+  global.setSidebarContext = setContext;
+
+  /* ---- Sidebar nav injection (idempotent) ---- */
   function buildNav() {
     const nav = document.querySelector('#dbSidebar .db-nav');
-    if (!nav || document.getElementById('adminNavGroup')) {
-      const existing = document.getElementById('adminNavGroup');
-      if (existing) existing.style.display = role.admin ? '' : 'none';
-      const sExisting = document.getElementById('superAdminNavGroup');
-      if (sExisting) sExisting.style.display = role.superAdmin ? '' : 'none';
-      return;
-    }
-    if (role.admin) {
+    if (!nav) return;
+    // First-time inject. After that, applyRole simply toggles data-role
+    // on the sidebar and CSS handles visibility.
+    if (!document.getElementById('adminNavGroup') && role.admin) {
       const g = document.createElement('div');
       g.id = 'adminNavGroup';
+      g.setAttribute('data-role-only', 'admin');
       g.innerHTML =
         '<div class="db-nav-section">Administration</div>' +
-        navBtn('a-overview', 'fa-shield-halved', 'Admin Dashboard') +
-        navBtn('a-users', 'fa-users', 'Users') +
-        navBtn('a-billing', 'fa-file-invoice-dollar', 'Subscriptions') +
-        navBtn('a-funding', 'fa-sack-dollar', 'Funding DB') +
-        navBtn('a-visa', 'fa-passport', 'Visa DB') +
-        navBtn('a-blog', 'fa-newspaper', 'Blog') +
-        navBtn('a-cms', 'fa-pen-ruler', 'CMS') +
-        navBtn('a-support', 'fa-headset', 'Support Tickets') +
-        navBtn('a-audit', 'fa-clipboard-list', 'Audit Logs');
+        navBtn('a-overview', 'fa-shield-halved',        'Admin Dashboard') +
+        navBtn('a-users',    'fa-users',                'Users') +
+        navBtn('a-billing',  'fa-file-invoice-dollar',  'Subscriptions') +
+        navBtn('a-funding',  'fa-sack-dollar',          'Funding DB') +
+        navBtn('a-visa',     'fa-passport',             'Visa DB') +
+        navBtn('a-blog',     'fa-newspaper',            'Blog') +
+        navBtn('a-cms',      'fa-pen-ruler',            'CMS') +
+        navBtn('a-support',  'fa-headset',              'Support Tickets') +
+        navBtn('a-audit',    'fa-clipboard-list',       'Audit Logs');
       nav.appendChild(g);
     }
-    if (role.superAdmin) {
+    if (!document.getElementById('superAdminNavGroup') && role.superAdmin) {
       const g = document.createElement('div');
       g.id = 'superAdminNavGroup';
+      g.setAttribute('data-role-only', 'super_admin');
       g.innerHTML =
         '<div class="db-nav-section">Super Admin</div>' +
-        navBtn('s-ai', 'fa-robot', 'AI Providers') +
-        navBtn('s-gateways', 'fa-plug', 'Gateways') +
-        navBtn('s-email', 'fa-envelope', 'Email Settings') +
-        navBtn('s-security', 'fa-lock', 'Security') +
-        navBtn('s-system', 'fa-server', 'System Health');
+        navBtn('s-ai',       'fa-robot',     'AI Providers') +
+        navBtn('s-gateways', 'fa-plug',      'Gateways') +
+        navBtn('s-email',    'fa-envelope',  'Email Settings') +
+        navBtn('s-security', 'fa-lock',      'Security') +
+        navBtn('s-system',   'fa-server',    'System Health');
       nav.appendChild(g);
     }
   }
   function navBtn(section, icon, label) {
-    return `<button class="db-nl" onclick="dbNav('${section}',this)"><i class="fa-solid ${icon}"></i> ${label}</button>`;
+    return '<button class="db-nl" onclick="dbNav(\'' + section + '\',this)"><i class="fa-solid ' + icon + '"></i> ' + label + '</button>';
   }
 
   /* ---- Section container injection ---- */
@@ -721,7 +785,8 @@
   }
 
   global.NovaAdmin = {
-    applyRole, load,
+    applyRole, load, setContext,
+    detectRole,
     searchUsers, toggleUser, editUser, editUserFromButton, delUser,
     newFunding, delFunding,
     newVisa, delVisa,
