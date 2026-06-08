@@ -4,7 +4,7 @@
 
 [![Production-ready](https://img.shields.io/badge/status-production--ready-success)](./HARDENING_REPORT.md)
 [![No build step](https://img.shields.io/badge/build-none-blue)]()
-[![License: private](https://img.shields.io/badge/license-private-lightgrey)]()
+[![License: MIT](https://img.shields.io/github/license/achraf05-code/Nova-StartupOS-AI-v1)]()
 
 > **Arabic technical reference:** [`TECHNICAL_SPECIFICATION.md`](./TECHNICAL_SPECIFICATION.md) — وثيقة المواصفات التقنية بالعربية.
 > **Hardening details:** [`HARDENING_REPORT.md`](./HARDENING_REPORT.md) — full v1 → v2 audit and fix log.
