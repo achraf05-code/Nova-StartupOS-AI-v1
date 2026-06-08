@@ -271,5 +271,43 @@ suite('AI message sanitizer', () => {
   });
 });
 
+/* ---------------------- Safety classifier parser ----------------- */
+suite('Safety classifier verdict parser', () => {
+  const { parseVerdict } = require('../api/_lib/safetyGate');
+
+  test('canonical safe', () => {
+    const v = parseVerdict('User Safety: safe');
+    assert.strictEqual(v.safe, true);
+    assert.strictEqual(v.category, null);
+  });
+
+  test('canonical unsafe with category', () => {
+    const v = parseVerdict('User Safety: unsafe\nS3');
+    assert.strictEqual(v.safe, false);
+    assert.strictEqual(v.category, 'S3');
+  });
+
+  test('case-insensitive', () => {
+    assert.strictEqual(parseVerdict('USER SAFETY: SAFE').safe, true);
+    assert.strictEqual(parseVerdict('user safety:UNSAFE').safe, false);
+  });
+
+  test('bare safe / unsafe responses', () => {
+    assert.strictEqual(parseVerdict('safe').safe, true);
+    assert.strictEqual(parseVerdict('unsafe').safe, false);
+  });
+
+  test('empty / unknown response is treated as safe (benign of the doubt)', () => {
+    assert.strictEqual(parseVerdict('').safe, true);
+    assert.strictEqual(parseVerdict('something weird').safe, true);
+  });
+
+  test('"unsafe" wins over substring "safe" earlier in the line', () => {
+    const v = parseVerdict('Re: safety check — User Safety: unsafe\nS5');
+    assert.strictEqual(v.safe, false);
+    assert.strictEqual(v.category, 'S5');
+  });
+});
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

@@ -20,60 +20,23 @@
 // schema the PPTX exporter consumes.
 // =====================================================================
 
-const fs = require('fs');
-const path = require('path');
 const {
   applyCors, handlePreflight, jsonError, readJsonBody, verifyAuth,
   checkRateLimit, incrementUsage, recordAiRequest, recordAudit,
   clientIp,
 } = require('./_lib/auth');
 const { sanitizeMessages } = require('./_lib/messages');
+const { classifyPrompt }   = require('./_lib/safetyGate');
+const projectContext       = require('./_lib/projectContext');
 
 const AI_DAILY_LIMIT = parseInt(process.env.AI_DAILY_LIMIT || '200', 10);
 const ANTHROPIC_KEY  = process.env.ANTHROPIC_API_KEY;
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY;
 const OPENAI_KEY     = process.env.OPENAI_API_KEY;
 
-// ---- Project-context loader (cached after first cold start) --------
-// Vercel ships these files when listed in vercel.json's `includeFiles`.
-let _projectContextCache = null;
-function loadProjectContext() {
-  if (_projectContextCache) return _projectContextCache;
-
-  // We try several candidate roots because Vercel's working directory
-  // is not perfectly stable across runtime versions.
-  const candidates = [
-    process.cwd(),
-    path.join(process.cwd(), 'api', '..'),
-    path.resolve(__dirname, '..'),
-  ];
-
-  function readSafe(name, maxBytes) {
-    for (const root of candidates) {
-      const full = path.join(root, name);
-      try {
-        const stat = fs.statSync(full);
-        if (!stat.isFile()) continue;
-        const raw = fs.readFileSync(full, 'utf8');
-        // Head-trim to keep prompts under control. Spec/schema are stable
-        // and authoritative — trimming the tail loses the least signal.
-        return raw.length > maxBytes ? raw.slice(0, maxBytes) + '\n…[truncated]' : raw;
-      } catch (_) { /* try next root */ }
-    }
-    return '';
-  }
-
-  const schema = readSafe('supabase_schema.sql', 14000);
-  const schemaV2 = readSafe('supabase_schema_v2.sql', 6000);
-  const spec   = readSafe('TECHNICAL_SPECIFICATION.md', 14000);
-
-  _projectContextCache = {
-    schema, schemaV2, spec,
-    loadedAt: new Date().toISOString(),
-    have: { schema: !!schema, schemaV2: !!schemaV2, spec: !!spec },
-  };
-  return _projectContextCache;
-}
+// Project context (schema + spec) is loaded by the shared module so the
+// /api/ai-stream endpoint and this one share a single warm cache.
+const loadProjectContext = projectContext.load;
 
 /* ---------------------- Prompt construction ---------------------- */
 function buildSystemPrompt(ctx, startup, audience, locale) {
@@ -307,6 +270,20 @@ module.exports = async (req, res) => {
   // 5. Prompts
   const systemPrompt = buildSystemPrompt(ctx, Object.assign({ name: startupName }, startup), audience, locale);
   const userPrompt   = buildUserPrompt(startupName, locale);
+
+  // 5b. Safety gate — same pattern as /api/ai-stream.
+  const safety = await classifyPrompt(userPrompt, { apiKey: process.env.OPENROUTER_API_KEY });
+  if (!safety.safe) {
+    await Promise.all([
+      recordAiRequest({ user_id: profile.id, status: 'blocked',
+        error_message: 'safety_blocked' + (safety.category ? ':' + safety.category : ''), ip_address: ip }),
+      recordAudit(profile, 'deck.blocked_unsafe', 'generated_documents', null,
+                  { category: safety.category, raw: (safety.raw || '').slice(0, 200) }, ip),
+    ]).catch(() => {});
+    return jsonError(res, 422,
+      'This deck request was flagged by the content safety classifier.',
+      { category: safety.category });
+  }
 
   // Sanitize before handing to providers (Anthropic enforces alternation,
   // and a future change that adds prior turns would break otherwise).
