@@ -9,7 +9,10 @@
     { "source": "/api/health",          "destination": "/api/health.js" }
   ],
   "functions": {
-    "api/ai-stream.js":       { "maxDuration": 60 },
+    "api/ai-stream.js":       {
+      "maxDuration": 60,
+      "includeFiles": "{supabase_schema.sql,supabase_schema_v2.sql,TECHNICAL_SPECIFICATION.md}"
+    },
     "api/stripe-checkout.js": { "maxDuration": 10 },
     "api/stripe-webhook.js":  { "maxDuration": 10 },
     "api/generate-deck.js":   {

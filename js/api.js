@@ -443,10 +443,16 @@
       });
 
       if (!res.ok || !res.body) {
-        let msg;
-        try { const j = await res.json(); msg = j.error; } catch (_) { msg = res.statusText; }
+        let msg, body;
+        try { body = await res.json(); msg = body && body.error; } catch (_) { msg = res.statusText; }
+        // Friendlier message for safety blocks (HTTP 422 from the gate).
+        if (res.status === 422 && body && body.category) {
+          msg = (msg || 'Blocked by safety filter') + ' [' + body.category + ']';
+        }
         const e = new Error('AI request failed (' + res.status + '): ' + (msg || 'unknown error'));
-        e.status = res.status; throw e;
+        e.status = res.status;
+        e.category = body && body.category;
+        throw e;
       }
 
       const reader = res.body.getReader();

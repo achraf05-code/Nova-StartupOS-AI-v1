@@ -20,6 +20,8 @@ const {
   clientIp, getServiceClient,
 } = require('./_lib/auth');
 const { sanitizeMessages } = require('./_lib/messages');
+const { classifyPrompt }   = require('./_lib/safetyGate');
+const { buildContextBlock } = require('./_lib/projectContext');
 
 // Per-provider upstream endpoints + the env var holding each secret key.
 // Anthropic and Gemini have their own native APIs but require slightly
@@ -48,7 +50,12 @@ function sseWrite(res, obj) {
 }
 
 // Resolve enabled providers ordered by priority, with the fallback to OpenRouter
-// when a provider's dedicated key is absent.
+// when a provider's dedicated key is absent. The Nvidia content-safety model
+// must NEVER be selected as a generation model — that's the bug that produced
+// the "User Safety: safe" dead-end. We hard-block any provider/model whose
+// name matches /content-safety|safety/.
+const SAFETY_MODEL_BLOCKLIST = /content-safety|safety|guard|moderation/i;
+
 async function resolveProviderChain(admin, requestedModel) {
   const { data: configs, error } = await admin
     .from('ai_providers_config')
@@ -59,6 +66,11 @@ async function resolveProviderChain(admin, requestedModel) {
 
   if (error) throw new Error('Could not read AI provider config.');
   if (!configs || !configs.length) throw new Error('No AI provider is currently enabled.');
+
+  // Refuse to honor a client-requested model that is itself a safety classifier.
+  const sanitizedRequested = (requestedModel && !SAFETY_MODEL_BLOCKLIST.test(requestedModel))
+    ? requestedModel
+    : '';
 
   return configs.map((c) => {
     const meta = PROVIDERS[c.provider_name];
@@ -72,12 +84,15 @@ async function resolveProviderChain(admin, requestedModel) {
       keyEnv = PROVIDERS.openrouter.keyEnv;
       nativeShape = true;
     }
+    const fallbackModel = (c.default_model && !SAFETY_MODEL_BLOCKLIST.test(c.default_model))
+      ? c.default_model
+      : 'google/gemini-flash-1.5';
     return {
       name: c.provider_name,
       url,
       keyEnv,
       nativeShape,
-      model: requestedModel || c.default_model || 'google/gemini-flash-1.5',
+      model: sanitizedRequested || fallbackModel,
     };
   }).filter(Boolean).filter((p) => process.env[p.keyEnv]);
 }
@@ -178,6 +193,29 @@ module.exports = async (req, res) => {
   if (!prompt.trim()) return jsonError(res, 400, 'Prompt is required.');
   if (prompt.length > 16000) return jsonError(res, 413, 'Prompt is too long.');
 
+  // ---- 4b. SAFETY GATE (the actual bridge) -------------------------
+  // We classify the user's prompt with the safety model first. Only when
+  // it returns "safe" do we move on to the real generation provider.
+  // Skipped/transient classifier failures fall through (fail-open) unless
+  // SAFETY_FAIL_CLOSED=1 is set on the server.
+  const safety = await classifyPrompt(prompt, {
+    apiKey: process.env.OPENROUTER_API_KEY,
+  });
+  if (!safety.safe) {
+    await Promise.all([
+      recordAiRequest({
+        user_id: profile.id, status: 'blocked',
+        error_message: 'safety_blocked' + (safety.category ? ':' + safety.category : ''),
+        ip_address: ip,
+      }),
+      recordAudit(profile, 'ai.blocked_unsafe', 'ai_requests', null,
+                  { category: safety.category, raw: safety.raw.slice(0, 200) }, ip),
+    ]).catch(() => {});
+    return jsonError(res, 422,
+      'This message was flagged by the content safety classifier.',
+      { category: safety.category });
+  }
+
   // ---- 5. Provider chain --------------------------------------------
   const admin = getServiceClient();
   let chain;
@@ -196,8 +234,14 @@ module.exports = async (req, res) => {
   // user/assistant/user… alternation ending on a user turn. This is what
   // fixes the OpenRouter/Anthropic 400:
   //   "Conversation roles must alternate user/assistant/user/assistant…"
+  //
+  // The MASTER prompt is hardcoded; the optional clientSystem carries the
+  // user's startup profile / memory; the project-context block injects
+  // the live supabase_schema.sql + technical spec so the LLM grounds
+  // every answer in our actual architecture.
+  const projectCtx = buildContextBlock();
   const rawTurns = [
-    { role: 'system', content: MASTER_SYSTEM_PROMPT },
+    { role: 'system', content: MASTER_SYSTEM_PROMPT + projectCtx },
     ...(clientSystem ? [{ role: 'system', content: clientSystem }] : []),
     { role: 'user',   content: prompt },
   ];
@@ -242,6 +286,8 @@ module.exports = async (req, res) => {
       ip_address: ip,
     }),
     recordAudit(profile, 'ai.request', 'ai_requests', null,
-                { provider: providerUsed, prompt_chars: prompt.length }, ip),
+                { provider: providerUsed, prompt_chars: prompt.length,
+                  safety: { skipped: !!safety.skipped, category: safety.category, raw: (safety.raw || '').slice(0, 80) } },
+                ip),
   ]).catch(() => {});
 };
