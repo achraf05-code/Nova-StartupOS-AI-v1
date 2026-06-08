@@ -160,6 +160,46 @@
         }
         /* Light mode tweaks */
         .lm #sec-decks .ppt-card{ background:#fff; border-color:rgba(15,23,42,.08); }
+
+        /* =====================================================================
+           ROLE-BASED ACCESS CONTROL — sidebar visibility
+           ---------------------------------------------------------------------
+           The sidebar carries data-role and data-context. Privileged groups
+           are hidden by default and only revealed for the matching role +
+           context. CSS-driven so there's never a flash of admin nav for a
+           regular user during JS boot.
+           ================================================================== */
+        #dbSidebar [data-role-only]{ display:none !important; }
+        #dbSidebar[data-role="admin"]       [data-role-only~="admin"]{ display:block !important; }
+        #dbSidebar[data-role="super_admin"] [data-role-only~="admin"],
+        #dbSidebar[data-role="super_admin"] [data-role-only~="super_admin"]{ display:block !important; }
+
+        /* Context switching: admin contexts hide the workspace nav, and vice versa. */
+        #dbSidebar[data-role="user"] #navContextSwitcher{ display:none !important; }
+        #dbSidebar[data-role="admin"][data-context="admin"]            #userNavGroup,
+        #dbSidebar[data-role="super_admin"][data-context="admin"]      #userNavGroup{ display:none !important; }
+        #dbSidebar[data-role="admin"][data-context="workspace"]        #adminNavGroup,
+        #dbSidebar[data-role="admin"][data-context="workspace"]        #superAdminNavGroup,
+        #dbSidebar[data-role="super_admin"][data-context="workspace"]  #adminNavGroup,
+        #dbSidebar[data-role="super_admin"][data-context="workspace"]  #superAdminNavGroup{ display:none !important; }
+
+        /* Context switcher styling — matches the existing pill aesthetic. */
+        #navContextSwitcher{
+          display:flex;gap:6px;padding:8px;margin:0 8px 10px;
+          background:var(--bg3);border:1px solid var(--bd);border-radius:12px;
+        }
+        #navContextSwitcher .nav-ctx-btn{
+          flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+          padding:7px 10px;border-radius:9px;border:0;background:transparent;
+          color:var(--tx2);font-size:.78rem;font-weight:600;cursor:pointer;
+          transition:background .15s ease,color .15s ease;
+        }
+        #navContextSwitcher .nav-ctx-btn i{ font-size:.72rem }
+        #navContextSwitcher .nav-ctx-btn:hover{ color:var(--tx); }
+        #navContextSwitcher .nav-ctx-btn.on{
+          background:linear-gradient(135deg,#6366F1,#8b5cf6);
+          color:#fff;box-shadow:0 6px 16px -10px rgba(99,102,241,.7);
+        }
       </style>
       <!-- Supabase JS SDK (must load before custom scripts) -->
       <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -746,7 +786,7 @@
       <!-- ======================== DASHBOARD (Founder OS) ======================== -->
       <div id="dashboard">
          <!-- Sidebar -->
-         <div class="db-sidebar" id="dbSidebar">
+         <div class="db-sidebar" id="dbSidebar" data-role="user" data-context="workspace">
             <div class="db-logo">
                <div class="logo-i"><i class="fa-solid fa-rocket"></i></div>
                <span>Nova<span class="gt">OS</span></span>
@@ -762,21 +802,52 @@
                <div class="ws-menu" id="wsMenu"></div>
             </div>
             <div class="db-nav">
-               <div class="db-nav-section">Founder OS</div>
-               <button class="db-nl active" onclick="dbNav('overview',this)"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
-               <button class="db-nl" onclick="dbNav('startups',this)"><i class="fa-solid fa-layer-group"></i> My Startups <span class="db-badge" id="navStartupCount">0</span></button>
-               <button class="db-nl" onclick="dbNav('analytics',this)"><i class="fa-solid fa-chart-pie"></i> Analytics</button>
-               <button class="db-nl" onclick="dbNav('documents',this)"><i class="fa-solid fa-folder-open"></i> Documents</button>
-               <div class="db-nav-section">AI Modules</div>
-               <button class="db-nl" onclick="dbNav('plans',this)"><i class="fa-solid fa-file-lines"></i> Business Plans</button>
-               <button class="db-nl" onclick="dbNav('decks',this)"><i class="fa-solid fa-chalkboard-user"></i> Pitch Decks</button>
-               <button class="db-nl" onclick="dbNav('readiness',this)"><i class="fa-solid fa-gauge"></i> Readiness Assessment</button>
-               <button class="db-nl" onclick="dbNav('funding',this)"><i class="fa-solid fa-sack-dollar"></i> Funding Assistant</button>
-               <button class="db-nl" onclick="dbNav('visa',this)"><i class="fa-solid fa-passport"></i> Visa Assistant</button>
-               <div class="db-nav-section">Assistant</div>
-               <button class="db-nl" onclick="dbNav('copilot',this)"><i class="fa-solid fa-robot"></i> AI Copilot <span class="db-badge" id="aiModeBadge" style="background:#fbbf24;color:#1a1a1a">Demo</span></button>
-               <button class="db-nl" onclick="dbNav('billing',this)"><i class="fa-solid fa-credit-card"></i> Billing</button>
-               <button class="db-nl" onclick="dbNav('settings',this)"><i class="fa-solid fa-gear"></i> Settings</button>
+               <!-- ============================================================
+                    Role-Based Access Control (RBAC) sidebar.
+
+                    Visibility is driven by `data-role` and `data-context` on
+                    #dbSidebar (set by NovaAdmin.applyRole). The CSS at the
+                    top of <head> hides everything by default and reveals the
+                    correct section for each role — so no privileged item
+                    flashes for an unauthenticated or pure-user account.
+
+                    Roles:
+                      - user        → only #userNavGroup
+                      - admin       → only #adminNavGroup (+ context switcher)
+                      - super_admin → #adminNavGroup + #superAdminNavGroup
+                    Context:
+                      - admin       → admin / super-admin tools
+                      - workspace   → flips back to #userNavGroup
+                    ========================================================= -->
+
+               <!-- Context switcher (rendered only for admin/super_admin). -->
+               <div id="navContextSwitcher" class="nav-ctx" role="group" aria-label="Sidebar context">
+                  <button type="button" class="nav-ctx-btn on" data-ctx="admin"     onclick="setSidebarContext('admin')"><i class="fa-solid fa-shield-halved"></i> Admin</button>
+                  <button type="button" class="nav-ctx-btn"    data-ctx="workspace" onclick="setSidebarContext('workspace')"><i class="fa-solid fa-briefcase"></i> Workspace</button>
+               </div>
+
+               <!-- ===== USER WORKSPACE (always built; visibility is RBAC) ===== -->
+               <div id="userNavGroup">
+                  <div class="db-nav-section">My Workspace</div>
+                  <button class="db-nl active" onclick="dbNav('overview',this)"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+                  <button class="db-nl" onclick="dbNav('startups',this)"><i class="fa-solid fa-layer-group"></i> My Startups <span class="db-badge" id="navStartupCount">0</span></button>
+                  <button class="db-nl" onclick="dbNav('analytics',this)"><i class="fa-solid fa-chart-pie"></i> Analytics</button>
+                  <button class="db-nl" onclick="dbNav('documents',this)"><i class="fa-solid fa-folder-open"></i> Documents</button>
+                  <div class="db-nav-section">AI Modules</div>
+                  <button class="db-nl" onclick="dbNav('plans',this)"><i class="fa-solid fa-file-lines"></i> Business Plans</button>
+                  <button class="db-nl" onclick="dbNav('decks',this)"><i class="fa-solid fa-chalkboard-user"></i> Pitch Decks</button>
+                  <button class="db-nl" onclick="dbNav('readiness',this)"><i class="fa-solid fa-gauge"></i> Readiness Assessment</button>
+                  <button class="db-nl" onclick="dbNav('funding',this)"><i class="fa-solid fa-sack-dollar"></i> Funding Assistant</button>
+                  <button class="db-nl" onclick="dbNav('visa',this)"><i class="fa-solid fa-passport"></i> Visa Assistant</button>
+                  <div class="db-nav-section">Assistant</div>
+                  <button class="db-nl" onclick="dbNav('copilot',this)"><i class="fa-solid fa-robot"></i> AI Copilot <span class="db-badge" id="aiModeBadge" style="background:#fbbf24;color:#1a1a1a">Demo</span></button>
+                  <button class="db-nl" onclick="dbNav('billing',this)"><i class="fa-solid fa-credit-card"></i> Billing</button>
+                  <button class="db-nl" onclick="dbNav('settings',this)"><i class="fa-solid fa-gear"></i> Settings</button>
+               </div>
+
+               <!-- #adminNavGroup and #superAdminNavGroup are injected by
+                    js/admin.js (NovaAdmin.applyRole) so non-admins never
+                    receive the markup at all. -->
             </div>
             <div class="db-bottom">
                <button class="db-nl" onclick="doLogout()" style="color:#f87171"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
