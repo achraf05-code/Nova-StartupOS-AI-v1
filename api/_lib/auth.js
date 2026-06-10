@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Shared serverless helpers
+// MaStartup AI — Shared serverless helpers
 // ---------------------------------------------------------------------
 // Centralizes:
 //   • Supabase service-role client construction

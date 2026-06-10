@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Project context loader (shared)
+// MaStartup AI — Project context loader (shared)
 // ---------------------------------------------------------------------
 // Reads `supabase_schema.sql`, `supabase_schema_v2.sql`, and
 // `TECHNICAL_SPECIFICATION.md` from the function bundle so the LLM can

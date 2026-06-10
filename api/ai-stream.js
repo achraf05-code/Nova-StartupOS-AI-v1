@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Secure AI Streaming Proxy v3 (Vercel / Node.js)
+// MaStartup AI — Secure AI Streaming Proxy v3 (Vercel / Node.js)
 // ---------------------------------------------------------------------
 // Route:  POST /api/ai-stream  (rewritten in vercel.json)
 //
@@ -37,7 +37,7 @@ const AI_DAILY_LIMIT = parseInt(process.env.AI_DAILY_LIMIT || '200', 10);
 const AI_MAX_TOKENS  = parseInt(process.env.AI_MAX_TOKENS  || '2048', 10);
 
 const MASTER_SYSTEM_PROMPT =
-  'You are Nova, an AI co-founder inside Nova StartupOS AI. You help founders ' +
+  'You are Nova, an AI co-founder inside MaStartup AI. You help founders ' +
   'turn ideas into investment-ready startups: business plans, pitch decks, ' +
   'readiness assessments, fundraising strategy, and startup-visa guidance. ' +
   'Be concise, structured, practical, and encouraging. Use clear section ' +
@@ -56,8 +56,8 @@ async function streamOpenAiCompatible(res, prov, messages) {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + process.env[prov.keyEnv],
-      'HTTP-Referer': 'https://novastartupos.ai',
-      'X-Title':      'Nova StartupOS AI',
+      'HTTP-Referer': 'https://mastartup.ai',
+      'X-Title':      'MaStartup AI',
     },
     body: JSON.stringify({
       model: prov.model,

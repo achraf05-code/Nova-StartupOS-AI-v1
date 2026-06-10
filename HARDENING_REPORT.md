@@ -1,4 +1,4 @@
-# Nova StartupOS AI — Production Hardening Report
+# MaStartup AI — Production Hardening Report
 
 > Scope: convert the v1 demo SaaS into a production-ready platform without redesigning the UI.
 > All visual elements (`index.html`, `css/*`) are untouched. Only behavior, data, and security were changed.

@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Content Safety gate
+// MaStartup AI — Content Safety gate
 // ---------------------------------------------------------------------
 // Wraps the Nvidia content-safety classifier (via OpenRouter) so we can
 // pre-screen the user's prompt before sending it to the real generator.
@@ -92,8 +92,8 @@ async function classifyPrompt(prompt, opts) {
       signal: ac.signal,
       headers: {
         'Authorization': 'Bearer ' + apiKey,
-        'HTTP-Referer': 'https://novastartupos.ai',
-        'X-Title': 'Nova StartupOS AI Safety',
+        'HTTP-Referer': 'https://mastartup.ai',
+        'X-Title': 'MaStartup AI Safety',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Shared AI provider fallback chain (v3)
+// MaStartup AI — Shared AI provider fallback chain (v3)
 // ---------------------------------------------------------------------
 // Centralizes the OpenRouter model priority list AND the database-backed
 // provider chain so /api/generate-deck and /api/ai-stream share a single
@@ -155,8 +155,8 @@ async function callOpenRouterWithFallback(opts) {
           signal: ac.signal,
           headers: {
             'Authorization': 'Bearer ' + apiKey,
-            'HTTP-Referer': 'https://novastartupos.ai',
-            'X-Title':      'Nova StartupOS AI',
+            'HTTP-Referer': 'https://mastartup.ai',
+            'X-Title':      'MaStartup AI',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(body),

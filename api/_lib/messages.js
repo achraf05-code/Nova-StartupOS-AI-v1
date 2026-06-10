@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Chat message sanitizer
+// MaStartup AI — Chat message sanitizer
 // ---------------------------------------------------------------------
 // Anthropic (and any provider strict about alternation) requires:
 //

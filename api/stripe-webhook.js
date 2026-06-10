@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Stripe Webhook Handler
+// MaStartup AI — Stripe Webhook Handler
 // ---------------------------------------------------------------------
 // Route:  POST /api/stripe-webhook
 //

@@ -1,8 +1,8 @@
 {
-  "name": "nova-startupos-ai",
+  "name": "mastartup",
   "version": "2.0.0",
   "private": true,
-  "description": "Nova StartupOS AI - static frontend with Vercel serverless backend (AI streaming proxy + Stripe + webhooks).",
+  "description": "MaStartup AI - static frontend with Vercel serverless backend (AI streaming proxy + Stripe + webhooks).",
   "type": "commonjs",
   "engines": {
     "node": ">=18.x"

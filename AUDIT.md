@@ -1,4 +1,4 @@
-# Nova StartupOS AI — Full Project Audit
+# MaStartup AI — Full Project Audit
 
 > Audit of the repository as it exists. No code, UI, or architecture was modified.
 
@@ -385,7 +385,7 @@ A "master system prompt" lives in `api/ai-stream.js`. The same prompt is duplica
 
 ### Executive Summary
 
-Nova StartupOS AI is a **polished static SPA** with **two thin serverless functions** and a **comprehensive Supabase schema**. The frontend is approximately 4,500 lines of well-commented vanilla JS that simulates an enterprise SaaS product. About **30% of the surface area is genuinely backend-connected** (auth, startups CRUD, documents storage, support tickets, admin tables, blocked IPs, ai_providers_config); the remaining **70% is either mocked, hardcoded, or wired to endpoints that don't exist** (AI generation, payments, assessments, billing history, analytics, notifications, CMS, audit logs, system monitors, plan gating).
+MaStartup AI is a **polished static SPA** with **two thin serverless functions** and a **comprehensive Supabase schema**. The frontend is approximately 4,500 lines of well-commented vanilla JS that simulates an enterprise SaaS product. About **30% of the surface area is genuinely backend-connected** (auth, startups CRUD, documents storage, support tickets, admin tables, blocked IPs, ai_providers_config); the remaining **70% is either mocked, hardcoded, or wired to endpoints that don't exist** (AI generation, payments, assessments, billing history, analytics, notifications, CMS, audit logs, system monitors, plan gating).
 
 The product is **demo-ready** — it presents convincingly when you sign in. It is **not** production-ready: payments don't actually charge, AI chat can't reach a working backend out of the box (the Edge Function it targets doesn't exist in the repo), and several admin write paths don't match the database schema.
 
