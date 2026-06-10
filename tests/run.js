@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Smoke / unit tests (no network, no Supabase)
+// MaStartup AI — Smoke / unit tests (no network, no Supabase)
 // ---------------------------------------------------------------------
 // Run with `npm test` (or `node tests/run.js`). These tests cover the
 // pure-logic modules: assessment scoring, deck JSON parser, and the

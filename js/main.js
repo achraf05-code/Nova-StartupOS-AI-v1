@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI - Application logic
+   MaStartup AI - Application logic
    Single-page app: landing + founder dashboard sharing one design system.
    No build step required. All modules are modular functions.
    ===================================================================== */
@@ -710,7 +710,7 @@ function paintDeck(slides) {
             '<div class="cover-eyebrow">' + escapeHtml(eyebrow) + '</div>' +
             '<h1 data-element="title">' + escapeHtml(s.title || '') + '</h1>' +
             (s.subtitle ? '<p data-element="subtitle">' + escapeHtml(s.subtitle) + '</p>' : '') +
-            '<div class="cover-footer"><span>NOVA STARTUPOS AI</span><span>' + num + '</span></div>' +
+            '<div class="cover-footer"><span>MASTARTUP AI</span><span>' + num + '</span></div>' +
           '</div>'
         )
       : (

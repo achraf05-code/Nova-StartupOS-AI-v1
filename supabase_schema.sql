@@ -1,5 +1,5 @@
 -- =====================================================================
--- Nova StartupOS AI — Production Database Schema (Supabase / PostgreSQL)
+-- MaStartup AI — Production Database Schema (Supabase / PostgreSQL)
 -- ---------------------------------------------------------------------
 -- Run this ENTIRE script once in the Supabase SQL Editor.
 -- It is idempotent-friendly: tables use IF NOT EXISTS, policies are

@@ -1,5 +1,5 @@
 -- =====================================================================
--- Nova StartupOS AI — Production Hardening Migration (v2)
+-- MaStartup AI — Production Hardening Migration (v2)
 -- ---------------------------------------------------------------------
 -- ADDITIVE migration. Run AFTER supabase_schema.sql. Safe to re-run.
 --

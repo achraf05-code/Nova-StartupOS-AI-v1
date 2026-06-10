@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI — Backend API client (NovaApi) v2
+   MaStartup AI — Backend API client (NovaApi) v2
 
    This module is the single network hub. Every call routes through:
      • Supabase JS SDK for Auth, DB CRUD, and Storage (RLS enforced).
@@ -391,8 +391,8 @@
         ? 'أنت Nova، شريك ذكاء اصطناعي يساعد المؤسسين على بناء عروض تقديمية وخطط أعمال بمستوى المستثمرين.'
         : 'You are Nova, an AI co-founder building investor-ready pitch decks and business plans.';
       const platformLine = lang === 'ar'
-        ? 'منصّة العمل: Nova StartupOS AI — تطبيق صفحة واحدة (SPA) مبني بـ Vanilla JS، يعتمد Supabase Auth + Postgres مع RLS، تخزين Supabase، ووظائف Vercel السيرفرلِس لبثّ الذكاء الاصطناعي والمدفوعات.'
-        : 'Platform: Nova StartupOS AI — Vanilla JS SPA on Supabase Auth + Postgres (RLS) + Storage with Vercel serverless functions for AI streaming and Stripe.';
+        ? 'منصّة العمل: MaStartup AI — تطبيق صفحة واحدة (SPA) مبني بـ Vanilla JS، يعتمد Supabase Auth + Postgres مع RLS، تخزين Supabase، ووظائف Vercel السيرفرلِس لبثّ الذكاء الاصطناعي والمدفوعات.'
+        : 'Platform: MaStartup AI — Vanilla JS SPA on Supabase Auth + Postgres (RLS) + Storage with Vercel serverless functions for AI streaming and Stripe.';
       const schemaSummary = lang === 'ar'
         ? 'الجداول الأساسية: profiles, startups, generated_documents, support_tickets, blog_posts, funding_sources, visa_programs, ai_providers_config, payment_gateways, blocked_ips. والمراحل المعتمدة لجدول startups.current_stage هي: Idea, MVP, Early Stage, Growth, Scale.'
         : 'Core tables: profiles, startups, generated_documents, support_tickets, blog_posts, funding_sources, visa_programs, ai_providers_config, payment_gateways, blocked_ips. startups.current_stage values: Idea, MVP, Early Stage, Growth, Scale.';

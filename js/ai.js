@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI — AI engine (NovaAI) v2
+   MaStartup AI — AI engine (NovaAI) v2
 
    All AI traffic goes through the secure server proxy at /api/ai-stream.
    No browser-stored provider keys, no demo / mock fallback. If the user
@@ -9,7 +9,7 @@
   'use strict';
 
   var SYSTEM_PROMPT =
-    "You are Nova, an AI co-founder inside Nova StartupOS AI, a platform that helps " +
+    "You are Nova, an AI co-founder inside MaStartup AI, a platform that helps " +
     "founders turn ideas into investment-ready startups. You help with business plans, " +
     "pitch decks, startup readiness, fundraising strategy, and startup-visa guidance. " +
     "Be concise, structured, practical, and encouraging. Prefer short paragraphs and " +

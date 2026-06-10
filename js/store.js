@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI - Persistence layer (NovaStore)
+   MaStartup AI - Persistence layer (NovaStore)
    localStorage-backed state with a single source of truth.
    Entities: settings, workspaces, startups, conversations, memory.
    No backend required for the MVP; structured so a REST/Supabase

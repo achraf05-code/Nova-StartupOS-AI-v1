@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Stripe Checkout Session Generator (v2)
+// MaStartup AI — Stripe Checkout Session Generator (v2)
 // ---------------------------------------------------------------------
 // Route:  POST /api/stripe-checkout
 //
@@ -18,7 +18,7 @@ const {
 } = require('./_lib/auth');
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
-const SITE_URL = process.env.SITE_URL || 'https://nova-startupos-ai.vercel.app';
+const SITE_URL = process.env.SITE_URL || 'https://mastartup.vercel.app';
 
 // Server-controlled mapping. Frontend sends only { plan, cycle }.
 const PRICE_MAP = {

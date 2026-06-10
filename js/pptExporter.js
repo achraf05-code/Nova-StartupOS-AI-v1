@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI — PPTX Exporter (NovaPpt)
+   MaStartup AI — PPTX Exporter (NovaPpt)
    ---------------------------------------------------------------------
    Walks the semantic deck markup rendered into #pdResult and produces a
    PowerPoint file via PptxGenJS. Designed for Arabic content: every text
@@ -168,7 +168,7 @@
     }
 
     // Footer brand line.
-    slide.addText(footer || 'Nova StartupOS AI', rtl({
+    slide.addText(footer || 'MaStartup AI', rtl({
       x: 0.7, y: SLIDE_H - 0.7, w: SLIDE_W - 1.4, h: 0.35,
       fontSize: 11, color: COLORS.coverFooter, bold: true, charSpacing: 3,
     }, profile));
@@ -222,7 +222,7 @@
       x: isRtl ? 0.7              : SLIDE_W - 2.0, y: SLIDE_H - 0.55, w: 1.5, h: 0.3,
       fontSize: 10, color: COLORS.standardMuted, align: isRtl ? 'left' : 'right',
     }, profile));
-    slide.addText('Nova StartupOS AI', rtl({
+    slide.addText('MaStartup AI', rtl({
       x: isRtl ? SLIDE_W - 4.2    : 0.7,           y: SLIDE_H - 0.55, w: 3.5, h: 0.3,
       fontSize: 10, color: COLORS.standardMuted, bold: true, charSpacing: 2,
     }, profile));
@@ -237,7 +237,7 @@
    * @param {string}  [opts.author]       - Embedded in metadata.
    * @param {Array}   [opts.slides]       - Pre-parsed slide array. If omitted, parses from `root`.
    * @param {string|Element} [opts.root]  - Container with the rendered slides. Default: '#pdResult'.
-   * @param {string}  [opts.footer]       - Cover footer text. Default: "Nova StartupOS AI".
+   * @param {string}  [opts.footer]       - Cover footer text. Default: "MaStartup AI".
    */
   async function exportDeck(opts) {
     opts = opts || {};
@@ -253,8 +253,8 @@
     const pptx = new PptxGenJSCtor();
     pptx.defineLayout({ name: 'NOVA_169', width: SLIDE_W, height: SLIDE_H });
     pptx.layout = 'NOVA_169';
-    pptx.author  = opts.author  || 'Nova StartupOS AI';
-    pptx.company = 'Nova StartupOS AI';
+    pptx.author  = opts.author  || 'MaStartup AI';
+    pptx.company = 'MaStartup AI';
     pptx.title   = opts.title   || 'Pitch Deck';
     pptx.rtlMode = !!activeLangProfile().rtl; // hint for PowerPoint
 

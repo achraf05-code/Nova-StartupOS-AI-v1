@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — Project-aware Deck/Plan Generator (v3)
+// MaStartup AI — Project-aware Deck/Plan Generator (v3)
 // ---------------------------------------------------------------------
 // Route:  POST /api/generate-deck
 //
@@ -42,8 +42,8 @@ const loadProjectContext = projectContext.load;
 function buildSystemPrompt(ctx, startup, audience, locale) {
   const isAr = locale !== 'en';
   const intro = isAr
-    ? 'أنت Nova، شريك ذكاء اصطناعي يصنع عروض تقديمية وخطط أعمال بمستوى المستثمرين. ستقرأ بنية مشروع "Nova StartupOS AI" أدناه (مخطط Supabase + المواصفات التقنية) وستستخدمها لتخصيص العرض بدقة لهذا المنتج تحديدًا.'
-    : 'You are Nova, an AI co-founder generating investor-ready pitch decks. You will read the Nova StartupOS AI project below (Supabase schema + technical spec) and tailor the deck to this exact product.';
+    ? 'أنت Nova، شريك ذكاء اصطناعي يصنع عروض تقديمية وخطط أعمال بمستوى المستثمرين. ستقرأ بنية مشروع "MaStartup AI" أدناه (مخطط Supabase + المواصفات التقنية) وستستخدمها لتخصيص العرض بدقة لهذا المنتج تحديدًا.'
+    : 'You are Nova, an AI co-founder generating investor-ready pitch decks. You will read the MaStartup AI project below (Supabase schema + technical spec) and tailor the deck to this exact product.';
   const audienceLine = isAr
     ? (audience === 'investors' ? 'الجمهور: مستثمرون مرحلة Pre-seed إلى Series A.' : 'الجمهور: ' + audience)
     : 'Audience: pre-seed to Series A investors.';

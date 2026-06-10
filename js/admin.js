@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI - Admin & Super Admin areas (NovaAdmin)
+   MaStartup AI - Admin & Super Admin areas (NovaAdmin)
    Adds role-gated sections INTO the existing single-page dashboard, reusing
    the Nova design system. All data comes from the backend /admin APIs.
    Sections are injected into #adminSections and shown via dbNav('a-*').

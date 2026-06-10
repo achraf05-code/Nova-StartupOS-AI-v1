@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI - Onboarding & Startup Creation Wizard (NovaWizard)
+   MaStartup AI - Onboarding & Startup Creation Wizard (NovaWizard)
    Two flows backed by Bootstrap modals defined in index.html:
    1. Onboarding   (#onboardModal)  - first run, creates a workspace.
    2. Startup wizard (#wizardModal) - multi-step startup creation.

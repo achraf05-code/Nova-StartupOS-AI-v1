@@ -1,5 +1,5 @@
 /* =====================================================================
-   Nova StartupOS AI — Internationalization Engine (NovaI18n)
+   MaStartup AI — Internationalization Engine (NovaI18n)
    ---------------------------------------------------------------------
    • Loads `locales/{lang}.json` on demand and caches them.
    • Exposes `t(key, vars)` for translation lookups (supports dot paths

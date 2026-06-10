@@ -1,4 +1,4 @@
-# Nova StartupOS AI
+# MaStartup AI
 
 > AI co-founder for early-stage founders. Static SPA + Supabase (Auth, Postgres/RLS, Storage) + Vercel serverless functions for AI streaming, Stripe checkout, and webhooks.
 
@@ -13,7 +13,7 @@
 
 ## What it does
 
-Nova StartupOS AI helps founders go from idea to investor-ready in one place:
+MaStartup AI helps founders go from idea to investor-ready in one place:
 
 - **AI Copilot** — streaming conversations grounded in your active startup context
 - **Business plan generator** — full investor-ready plan from a few inputs
@@ -207,8 +207,8 @@ In the **Stripe Dashboard**:
 ```bash
 git init
 git add .
-git commit -m "Nova StartupOS AI v2 — production hardening"
-gh repo create nova-startupos-ai --private --source=. --remote=origin --push
+git commit -m "MaStartup AI v2 — production hardening"
+gh repo create mastartup --private --source=. --remote=origin --push
 ```
 
 In Vercel: **Add New → Project → Import** with these settings:
@@ -338,6 +338,6 @@ Private. All rights reserved.
 <div align="center">
 
 Made for startup founders by startup founders.
-**Nova StartupOS AI** — صُنع لمؤسّسي الشركات الناشئة 🚀
+**MaStartup AI** — صُنع لمؤسّسي الشركات الناشئة 🚀
 
 </div>

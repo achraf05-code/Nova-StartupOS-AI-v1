@@ -1,5 +1,5 @@
 // =====================================================================
-// Nova StartupOS AI — System Health Probe
+// MaStartup AI — System Health Probe
 // ---------------------------------------------------------------------
 // Route:  GET /api/health  (admin/super-admin only)
 //

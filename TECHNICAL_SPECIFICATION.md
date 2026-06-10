@@ -1,4 +1,4 @@
-# Nova StartupOS AI — وثيقة المواصفات التقنية الرئيسية (Master Technical Specification)
+# MaStartup AI — وثيقة المواصفات التقنية الرئيسية (Master Technical Specification)
 
 > **النوع:** منصّة **SaaS** ثابتة (Static SPA) بـ **Vanilla JavaScript** — بدون خطوة بناء (No Build Step).
 > **الخلفية (Backend):** **Supabase** (Auth + Postgres/RLS + Storage) + **Edge Functions** لبثّ الذكاء الاصطناعي.
@@ -372,6 +372,6 @@ new Chart(ctx, { type: 'line', data: { datasets: [{ data, borderColor: color, po
 
 <div align="center">
 
-**Nova StartupOS AI** — وثيقة المواصفات التقنية الرئيسية · إصدار الإطلاق (Production v1) 🚀
+**MaStartup AI** — وثيقة المواصفات التقنية الرئيسية · إصدار الإطلاق (Production v1) 🚀
 
 </div>
